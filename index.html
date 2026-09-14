@@ -403,8 +403,7 @@
             transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
         }
 
-        .timeline-content.show-popover .timeline-popover,
-        .timeline-content:focus-within .timeline-popover {
+        .timeline-content.show-popover .timeline-popover {
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
@@ -431,11 +430,17 @@
             background: none;
             border: none;
             color: var(--text-muted);
-            font-size: 16px;
+            font-size: 18px;
             line-height: 1;
             cursor: pointer;
-            padding: 2px 4px;
+            width: 26px;
+            height: 26px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
             border-radius: 4px;
+            margin: -2px -2px -2px 0;
             transition: color 0.15s ease, background-color 0.15s ease;
         }
 
@@ -844,30 +849,25 @@
                 transform-origin: bottom right;
             }
 
-            .timeline-content.show-popover .timeline-popover,
-            .timeline-content:focus-within .timeline-popover {
+            .timeline-content.show-popover .timeline-popover {
                 opacity: 1;
                 visibility: visible;
                 pointer-events: auto;
             }
 
-            #tl-cisco .timeline-content.show-popover .timeline-popover,
-            #tl-cisco .timeline-content:focus-within .timeline-popover {
+            #tl-cisco .timeline-content.show-popover .timeline-popover {
                 transform: scale(1);
             }
 
-            #tl-bits .timeline-content.show-popover .timeline-popover,
-            #tl-bits .timeline-content:focus-within .timeline-popover {
+            #tl-bits .timeline-content.show-popover .timeline-popover {
                 transform: translateX(-35%) scale(1);
             }
 
-            #tl-tatvic .timeline-content.show-popover .timeline-popover,
-            #tl-tatvic .timeline-content:focus-within .timeline-popover {
+            #tl-tatvic .timeline-content.show-popover .timeline-popover {
                 transform: translateX(-65%) scale(1);
             }
 
-            #tl-ddit .timeline-content.show-popover .timeline-popover,
-            #tl-ddit .timeline-content:focus-within .timeline-popover {
+            #tl-ddit .timeline-content.show-popover .timeline-popover {
                 transform: scale(1);
             }
 
@@ -889,8 +889,14 @@
             }
 
             .popover-close {
-                padding: 2px 4px;
-                font-size: 15px;
+                width: 28px;
+                height: 28px;
+                font-size: 20px;
+                line-height: 1;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
             }
 
             .popover-body {
@@ -998,27 +1004,6 @@
             width: 14px;
             height: 14px;
             fill: currentColor;
-        }
-
-        .sidebar-arch-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            background: var(--accent-bg);
-            border: 1px solid var(--accent-border);
-            border-radius: var(--radius-sm);
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--accent-text);
-            transition: all 0.15s ease;
-            text-decoration: none;
-        }
-
-        .sidebar-arch-link:hover {
-            border-color: var(--accent);
-            color: #ffffff;
-            background: var(--accent);
         }
 
         /* Section Layout */
@@ -1227,307 +1212,6 @@
             border-radius: 4px;
             color: var(--tag-text);
             white-space: nowrap;
-        }
-
-        /* Architecture Blueprint Preview & Modal */
-        .arch-actions-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 14px;
-            flex-wrap: wrap;
-        }
-
-        .arch-preview-trigger {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            background: var(--accent-bg);
-            border: 1px solid var(--accent-border);
-            border-radius: var(--radius-sm);
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            text-align: left;
-            flex-grow: 1;
-        }
-
-        .arch-preview-trigger:hover {
-            border-color: var(--accent);
-            transform: translateY(-1px);
-        }
-
-        .arch-trigger-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .arch-icon {
-            width: 16px;
-            height: 16px;
-            fill: var(--accent);
-            flex-shrink: 0;
-        }
-
-        .arch-trigger-title {
-            font-size: 0.86rem;
-            font-weight: 600;
-            color: var(--accent-text);
-        }
-
-        .arch-trigger-badge {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            font-weight: 600;
-            background: var(--surface);
-            border: 1px solid var(--accent-border);
-            padding: 2px 7px;
-            border-radius: 4px;
-            color: var(--accent);
-            white-space: nowrap;
-        }
-
-        .arch-flow-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-sm);
-            padding: 8px 12px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--text-main);
-            transition: all 0.15s ease;
-            white-space: nowrap;
-            text-decoration: none;
-        }
-
-        .arch-flow-link:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-bg);
-            transform: translateY(-1px);
-        }
-
-        .live-flow-dot {
-            width: 7px;
-            height: 7px;
-            background-color: #22c55e;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 6px #22c55e;
-        }
-
-        /* Modal Overlay */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(9, 13, 22, 0.78);
-            backdrop-filter: blur(4px);
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s ease, visibility 0.2s ease;
-        }
-
-        .modal-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-container {
-            background: var(--surface);
-            border: 1px solid var(--border-strong);
-            border-radius: var(--radius-lg);
-            width: 100%;
-            max-width: 1100px;
-            max-height: 92vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
-            display: flex;
-            flex-direction: column;
-            transform: scale(0.96);
-            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .modal-overlay.open .modal-container {
-            transform: scale(1);
-        }
-
-        .modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 24px;
-            border-bottom: 1px solid var(--border-subtle);
-            position: sticky;
-            top: 0;
-            background: var(--surface);
-            z-index: 10;
-        }
-
-        .modal-title-group {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .modal-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .modal-subtitle {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .modal-header-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .modal-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            background: var(--tag-bg);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-sm);
-            color: var(--text-secondary);
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-
-        .modal-btn:hover {
-            color: var(--text-main);
-            border-color: var(--border-strong);
-        }
-
-        .modal-btn-accent {
-            background: var(--accent-bg);
-            border-color: var(--accent-border);
-            color: var(--accent-text);
-        }
-
-        .modal-btn-accent:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: #ffffff;
-        }
-
-        .modal-close-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 6px;
-            color: var(--text-muted);
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: color 0.15s ease;
-        }
-
-        .modal-close-btn:hover {
-            color: var(--text-main);
-            background: var(--surface-hover);
-        }
-
-        .modal-close-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        .modal-body {
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .modal-diagram-frame {
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            background: #edf2f7;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-            line-height: 0;
-        }
-
-        .modal-diagram-img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .stage-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 12px;
-        }
-
-        .stage-explainer-card {
-            background: var(--tag-bg);
-            border: 1px solid var(--tag-border);
-            border-radius: var(--radius-sm);
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .stage-number-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: 0.04em;
-        }
-
-        .stage-name-text {
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .stage-desc-text {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            line-height: 1.45;
-        }
-
-        @media (max-width: 900px) {
-            .stage-cards-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 600px) {
-            .stage-cards-grid {
-                grid-template-columns: 1fr;
-            }
-            .modal-container {
-                max-height: 96vh;
-            }
-            .modal-body {
-                padding: 16px;
-            }
         }
 
         /* Adjacent / Secondary Projects */
@@ -1891,18 +1575,13 @@
                     </a>
                 </div>
 
-                <!-- Theme Toggle & Architecture Link -->
+                <!-- Theme Toggle -->
                 <div class="sidebar-actions" id="sidebar-actions">
                     <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle light and dark mode">
                         <svg id="theme-icon-moon" viewBox="0 0 24 24" style="display: none;"><path d="M12.3 2a10 10 0 0 0-.19 20 10 10 0 0 0 8.35-4.52 1 1 0 0 0-.82-1.52A8 8 0 0 1 12.3 4a7.92 7.92 0 0 1 1.48.14 1 1 0 0 0 1.13-1.25A10.1 10.1 0 0 0 12.3 2z"/></svg>
                         <svg id="theme-icon-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1zm0 18a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1zm10-9h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM4 12a1 1 0 0 0-1-1H1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm14.07-6.07a1 1 0 0 0-1.41 0l-1.42 1.41a1 1 0 1 0 1.41 1.42l1.42-1.42a1 1 0 0 0 0-1.41zM6.76 17.24a1 1 0 0 0-1.42 0l-1.41 1.42a1 1 0 1 0 1.41 1.41l1.42-1.41a1 1 0 0 0 0-1.42zm11.31 1.42l-1.42-1.42a1 1 0 0 0-1.41 1.42l1.42 1.41a1 1 0 0 0 1.41-1.41zM7.17 6.76L5.76 5.34a1 1 0 1 0-1.41 1.42l1.41 1.41a1 1 0 0 0 1.41-1.41z"/></svg>
                         <span id="theme-text">Dark Mode</span>
                     </button>
-
-                    <a href="/architecture.html" class="sidebar-arch-link" title="Open animated mail flow architecture">
-                        <span class="live-flow-dot"></span>
-                        <span>Architecture</span>
-                    </a>
                 </div>
             </div>
         </aside>
@@ -1949,21 +1628,6 @@
                         <p class="project-summary">
                             Built and extended a production email-security platform that combined multiple threat-scanning engines and intelligence sources to detect malicious URLs, attachments, and content. Delivered scanning, remediation, reporting, search, and administrator-facing configuration capabilities across web and command-line interfaces, while improving the extensibility and maintainability of the underlying scanning framework.
                         </p>
-
-                        <!-- Architecture Blueprint & Live Flow Triggers -->
-                        <div class="arch-actions-row">
-                            <button type="button" class="arch-preview-trigger" id="open-arch-modal-btn" aria-haspopup="dialog" aria-controls="arch-modal">
-                                <div class="arch-trigger-left">
-                                    <svg class="arch-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-4h4v4zm0-6H7V7h4v4zm6 6h-4v-4h4v4zm0-6h-4V7h4v4z"/></svg>
-                                    <span class="arch-trigger-title">Architecture: Extensible Multi-Engine Pipeline</span>
-                                </div>
-                                <span class="arch-trigger-badge">Diagram</span>
-                            </button>
-                            <a href="/architecture.html" class="arch-flow-link" title="Open animated mail flow sub-page">
-                                <span class="live-flow-dot"></span>
-                                <span>Live Flow Loop &rarr;</span>
-                            </a>
-                        </div>
                     </div>
                     <div class="project-tags">
                         <span class="tag-pill">Scanning Engines</span>
@@ -2358,41 +2022,6 @@
             // Initial view: Featured list
             updateProjectVisibility();
 
-            // Architecture Modal Logic
-            const openModalBtn = document.getElementById('open-arch-modal-btn');
-            const closeModalBtn = document.getElementById('close-arch-modal-btn');
-            const archModal = document.getElementById('arch-modal');
-
-            function openArchModal() {
-                if (archModal) {
-                    archModal.classList.add('open');
-                    document.body.style.overflow = 'hidden';
-                }
-            }
-
-            function closeArchModal() {
-                if (archModal) {
-                    archModal.classList.remove('open');
-                    document.body.style.overflow = '';
-                }
-            }
-
-            if (openModalBtn) {
-                openModalBtn.addEventListener('click', openArchModal);
-            }
-
-            if (closeModalBtn) {
-                closeModalBtn.addEventListener('click', closeArchModal);
-            }
-
-            if (archModal) {
-                archModal.addEventListener('click', (e) => {
-                    if (e.target === archModal) {
-                        closeArchModal();
-                    }
-                });
-            }
-
             // Timeline Interactive Info Triggers & Popover Toggle
             const timelineCards = document.querySelectorAll('.timeline-content');
             const infoTriggers = document.querySelectorAll('.timeline-info-trigger');
@@ -2455,10 +2084,15 @@
             });
 
             popoverCloses.forEach(btn => {
-                btn.addEventListener('click', (e) => {
+                const handleClose = (e) => {
+                    e.preventDefault();
                     e.stopPropagation();
                     closeAllTimelinePopovers();
-                });
+                    if (document.activeElement && typeof document.activeElement.blur === 'function') {
+                        document.activeElement.blur();
+                    }
+                };
+                btn.addEventListener('click', handleClose);
             });
 
             document.addEventListener('click', (e) => {
@@ -2470,78 +2104,10 @@
             // Keyboard accessibility (Esc to close)
             window.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
-                    if (archModal && archModal.classList.contains('open')) {
-                        closeArchModal();
-                    }
                     closeAllTimelinePopovers();
                 }
             });
         })();
     </script>
-
-    <!-- Architecture Blueprint Modal -->
-    <div class="modal-overlay" id="arch-modal" role="dialog" aria-modal="true" aria-labelledby="arch-modal-title">
-        <div class="modal-container">
-            <div class="modal-header">
-                <div class="modal-title-group">
-                    <h3 class="modal-title" id="arch-modal-title">Architecture of an Extensible Production Email-Security Platform</h3>
-                    <span class="modal-subtitle">Intake, multi-engine threat detection, automated remediation, and extensible management planes</span>
-                </div>
-                <div class="modal-header-actions">
-                    <a href="/architecture.html" class="modal-btn modal-btn-accent" title="Open visual animated mail flow sub-page">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                        <span>Live Mail Flow Loop</span>
-                    </a>
-                    <a href="/email-security-architecture.svg" target="_blank" rel="noopener noreferrer" class="modal-btn" title="Open standalone vector SVG in new tab">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
-                        <span>Raw SVG</span>
-                    </a>
-                    <button type="button" class="modal-close-btn" id="close-arch-modal-btn" aria-label="Close architecture modal">
-                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-                    </button>
-                </div>
-            </div>
-
-            <div class="modal-body">
-                <div class="modal-diagram-frame">
-                    <img src="/email-security-architecture.svg" alt="Architecture of an Extensible Production Email-Security Platform" class="modal-diagram-img" referrerPolicy="no-referrer">
-                </div>
-
-                <div class="stage-cards-grid">
-                    <div class="stage-explainer-card">
-                        <span class="stage-number-tag">STAGE 1</span>
-                        <h4 class="stage-name-text">Intake &amp; Pre-Processing</h4>
-                        <p class="stage-desc-text">
-                            Messages enter from the Internet via the Security Platform Gateway into a resilient Parser &amp; Queue, dissecting messages into RFC 822 headers, HTML/plain-text bodies, and binary attachments.
-                        </p>
-                    </div>
-
-                    <div class="stage-explainer-card">
-                        <span class="stage-number-tag">STAGE 2</span>
-                        <h4 class="stage-name-text">Multi-Engine Threat Analysis</h4>
-                        <p class="stage-desc-text">
-                            Parallel evaluation through pluggable engines: URL emulation &amp; threat feeds, attachment detonation (Talos/Bitdefender sandboxing), and header/content heuristics (Vade Secure, DMARC/SPF), scored by the Threat Decision Engine.
-                        </p>
-                    </div>
-
-                    <div class="stage-explainer-card">
-                        <span class="stage-number-tag">STAGE 3</span>
-                        <h4 class="stage-name-text">Remediation &amp; Action</h4>
-                        <p class="stage-desc-text">
-                            Identified threats trigger automated quarantine, blocking, or post-delivery inbox retraction. Verified safe emails are routed to corporate inboxes while all processing telemetry streams to the SQL/BerkeleyDB audit store.
-                        </p>
-                    </div>
-
-                    <div class="stage-explainer-card">
-                        <span class="stage-number-tag">STAGE 4</span>
-                        <h4 class="stage-name-text">Administration &amp; Extensibility</h4>
-                        <p class="stage-desc-text">
-                            Dual administrative interfaces (Web-Based GUI Dashboard and CLI) enable policy orchestration, quarantine inspection, and hot-swappable adapter registration for new scanning engines.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
