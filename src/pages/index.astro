@@ -240,34 +240,34 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
 
         .profile-name {
             font-family: 'Outfit', sans-serif;
-            font-size: clamp(2rem, 3.5vw, 2.65rem);
+            font-size: clamp(1.45rem, 2.4vw, 1.85rem);
             font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.12;
+            letter-spacing: -0.025em;
+            line-height: 1.15;
             color: var(--text-main);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .profile-headline {
-            font-size: 1.12rem;
+            font-size: 0.98rem;
             font-weight: 700;
             color: var(--accent);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             letter-spacing: -0.015em;
         }
 
         .profile-subheadline {
-            font-size: 0.92rem;
+            font-size: 0.84rem;
             font-weight: 600;
             color: var(--text-secondary);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             letter-spacing: -0.01em;
         }
 
         .profile-bio {
-            font-size: 0.94rem;
+            font-size: 0.88rem;
             color: var(--text-muted);
-            line-height: 1.62;
+            line-height: 1.5;
         }
 
         /* Sidebar Dividers */
@@ -278,717 +278,100 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             border: none;
         }
 
-        /* Sidebar Timeline */
-        .timeline-section {
+        /* Sidebar Experience & Education ("Four Lines" Stacked Layout) & Skill Pills */
+        .sidebar-exp-edu {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .sidebar-block {
             display: flex;
             flex-direction: column;
         }
 
-        .timeline-header-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
-
-        .timeline-header-label {
+        .sidebar-section-title {
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.08em;
             color: var(--text-muted);
             text-transform: uppercase;
+            margin-bottom: 12px;
         }
 
-        .timeline-scroll-hint {
-            display: none;
-        }
-
-        .timeline-list {
-            list-style: none;
-            padding: 0 0 0 4px;
-            margin: 0;
-            position: relative;
+        .stacked-entry-list {
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 13px;
         }
 
-        .timeline-list::before {
-            content: '';
-            position: absolute;
-            left: 9px;
-            top: 6px;
-            bottom: 12px;
-            width: 2px;
-            background: var(--border-subtle);
-        }
-
-        .timeline-item {
-            position: relative;
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-        }
-
-        .timeline-stem,
-        .timeline-spacer,
-        .timeline-dot-year {
-            display: none;
-        }
-
-        .timeline-marker {
-            order: 1;
-            position: relative;
-            z-index: 2;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--surface);
-            border: 2px solid var(--accent);
-            margin-top: 3px;
-            flex-shrink: 0;
-            transition: all 0.2s ease;
-        }
-
-        .timeline-marker.edu {
-            border-color: var(--border-strong);
-            background: var(--surface);
-        }
-
-        .timeline-item:hover .timeline-marker,
-        .timeline-content.show-popover ~ .timeline-marker {
-            border-color: var(--accent);
-            background: var(--accent);
-            transform: scale(1.2);
-            box-shadow: 0 0 0 3px var(--accent-bg);
-        }
-
-        .timeline-content {
-            order: 2;
-            position: relative;
+        .stacked-entry {
             display: flex;
             flex-direction: column;
-            gap: 2px;
-            min-width: 0;
-            flex: 1;
+            gap: 3px;
         }
 
-        .timeline-card-header {
+        .entry-row-top {
             display: flex;
-            align-items: center;
+            align-items: baseline;
             justify-content: space-between;
-            gap: 8px;
+            gap: 10px;
         }
 
-        .timeline-org-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .timeline-org {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
+        .entry-institution {
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--text-main);
-            letter-spacing: -0.01em;
-            line-height: 1.2;
+            letter-spacing: -0.015em;
+            line-height: 1.25;
         }
 
-        .timeline-badge {
+        .entry-date {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            font-weight: 600;
-            padding: 1px 6px;
-            border-radius: 4px;
-            background: var(--surface-hover);
+            font-size: 0.8rem;
+            font-weight: 500;
             color: var(--text-muted);
-            border: 1px solid var(--border-subtle);
+            white-space: nowrap;
+            letter-spacing: -0.01em;
+            flex-shrink: 0;
         }
 
-        .timeline-badge.current {
-            background: var(--featured-bg);
-            color: var(--featured-text);
-            border-color: var(--featured-border);
-        }
-
-        .timeline-period {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .timeline-role {
+        .entry-row-sub {
             font-size: 0.85rem;
             font-weight: 500;
             color: var(--text-secondary);
             line-height: 1.35;
         }
 
-        .timeline-location {
+        /* Skill Pills: High density flex wrapping with subtle background & rounded pill corners */
+        .skills-pill-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 12px;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-
-        .timeline-info-trigger {
-            background: var(--surface-hover);
-            border: 1px solid var(--border-subtle);
-            color: var(--accent);
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10.5px;
-            font-weight: 700;
-            cursor: pointer;
-            padding: 0;
-            flex-shrink: 0;
-            transition: all 0.15s ease;
-        }
-
-        .timeline-info-trigger:hover,
-        .timeline-info-trigger:focus-visible,
-        .timeline-content.show-popover .timeline-info-trigger {
-            background: var(--accent);
-            color: #ffffff;
-            border-color: var(--accent);
-            transform: scale(1.08);
-        }
-
-        .timeline-popover {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--surface);
-            border: 1px solid var(--accent);
-            border-radius: var(--radius-sm);
-            padding: 10px 12px;
-            box-shadow: var(--shadow-card);
-            z-index: 30;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transform: translateY(-4px);
-            transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
-        }
-
-        .timeline-content.show-popover .timeline-popover {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-            transform: translateY(0);
-        }
-
-        .popover-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 6px;
-            border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 4px;
-        }
-
-        .popover-org {
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .popover-close {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 18px;
-            line-height: 1;
-            cursor: pointer;
-            width: 26px;
-            height: 26px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-            border-radius: 4px;
-            margin: -2px -2px -2px 0;
-            transition: color 0.15s ease, background-color 0.15s ease;
-        }
-
-        .popover-close:hover,
-        .popover-close:focus-visible {
-            color: var(--text-main);
-            background: var(--surface-hover);
-        }
-
-        .popover-body {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .popover-meta-item {
-            display: flex;
-            flex-direction: column;
-            gap: 1px;
-        }
-
-        .popover-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 9.5px;
-            font-weight: 700;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        .popover-val {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
             font-weight: 500;
+            color: var(--text-main);
+            background: var(--tag-bg);
+            border: 1px solid var(--border-subtle);
+            border-radius: 999px;
             line-height: 1.35;
+            white-space: nowrap;
+            transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
         }
 
-        /* Mobile Timeline Adjustments */
-        @media (max-width: 899px) {
-            .timeline-section {
-                margin-top: 16px;
-                margin-bottom: 12px;
-            }
-
-            .timeline-header-row {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 8px;
-            }
-
-            .timeline-scroll-hint {
-                display: none !important;
-            }
-
-            .timeline-list::before {
-                display: none !important;
-            }
-
-            .timeline-list {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                align-items: center;
-                overflow: visible;
-                padding: 10px 0;
-                margin: 0;
-                gap: 0;
-                width: 100%;
-                box-sizing: border-box;
-                position: relative;
-            }
-
-            .timeline-item {
-                position: relative;
-                width: 100%;
-                height: 118px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                padding: 0 2px;
-                box-sizing: border-box;
-            }
-
-            .timeline-item::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 50%;
-                height: 2px;
-                background: var(--border-strong);
-                transform: translateY(-50%);
-                z-index: 1;
-                display: block !important;
-            }
-
-            .timeline-item:first-child::before {
-                left: 50%;
-            }
-
-            .timeline-item:last-child::before {
-                right: 50%;
-            }
-
-            .timeline-stem,
-            .timeline-spacer {
-                display: none !important;
-            }
-
-            .timeline-marker {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 12px;
-                height: 12px;
-                border-radius: 50%;
-                background: var(--surface);
-                border: 2px solid var(--accent);
-                margin: 0;
-                z-index: 3;
-                flex-shrink: 0;
-                transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-            }
-
-            .timeline-marker.edu {
-                border-color: var(--text-muted);
-            }
-
-            .timeline-item:hover .timeline-marker,
-            .timeline-content.show-popover ~ .timeline-marker,
-            .timeline-marker:has(~ .timeline-content.show-popover) {
-                border-color: var(--accent);
-                background: var(--accent);
-                transform: translate(-50%, -50%) scale(1.3);
-                box-shadow: 0 0 0 3px var(--accent-bg);
-            }
-
-            .timeline-dot-year {
-                position: absolute;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                gap: 1px;
-                font-family: 'JetBrains Mono', monospace;
-                font-size: 9.5px;
-                font-weight: 600;
-                color: var(--text-muted);
-                background: transparent !important;
-                border: none !important;
-                box-shadow: none !important;
-                padding: 0 !important;
-                height: auto !important;
-                white-space: nowrap;
-                z-index: 3;
-                left: 50%;
-                transform: translateX(-50%);
-                transition: color 0.2s ease, transform 0.2s ease;
-            }
-
-            .timeline-top .timeline-dot-year {
-                top: calc(50% + 12px);
-            }
-
-            .timeline-bottom .timeline-dot-year {
-                bottom: calc(50% + 12px);
-            }
-
-            .timeline-dot-year .year-primary {
-                font-weight: 700;
-                color: var(--text-muted);
-            }
-
-            #tl-cisco .timeline-dot-year .year-primary {
-                color: var(--text-main);
-            }
-
-            #tl-cisco .timeline-dot-year .year-range {
-                color: var(--accent);
-                font-weight: 700;
-            }
-
-            .timeline-item:hover .timeline-dot-year,
-            .timeline-content.show-popover ~ .timeline-dot-year,
-            .timeline-dot-year:has(~ .timeline-content.show-popover) {
-                color: var(--accent-text);
-            }
-
-            .timeline-content {
-                order: initial;
-                position: absolute;
-                width: max-content;
-                max-width: 100%;
-                height: auto !important;
-                min-height: 0 !important;
-                max-height: none !important;
-                background: transparent !important;
-                border: none !important;
-                box-shadow: none !important;
-                border-radius: 0;
-                padding: 0 !important;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                z-index: 4;
-                box-sizing: border-box;
-                white-space: nowrap;
-            }
-
-            .timeline-top .timeline-content {
-                bottom: calc(50% + 12px);
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .timeline-bottom .timeline-content {
-                top: calc(50% + 12px);
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .timeline-content .timeline-period,
-            .timeline-content .timeline-role,
-            .timeline-content .timeline-location {
-                display: none !important;
-            }
-
-            .timeline-card-header {
-                display: inline-flex;
-                align-items: flex-start;
-                justify-content: center;
-                gap: 2px;
-                width: auto;
-                cursor: pointer;
-            }
-
-            .timeline-org-row {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 2px;
-                text-align: center;
-            }
-
-            .timeline-org {
-                font-size: 0.84rem;
-                font-weight: 700;
-                color: var(--text-main);
-                line-height: 1.15;
-                white-space: nowrap;
-                text-align: center;
-            }
-
-            #tl-bits .timeline-org {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                line-height: 1.15;
-            }
-
-            #tl-bits .timeline-org .org-word {
-                display: block;
-            }
-
-            #tl-bits .timeline-org .org-word:first-child {
-                font-size: 0.84rem;
-                font-weight: 700;
-                color: var(--text-main);
-            }
-
-            #tl-bits .timeline-org .org-word:last-child {
-                font-size: 0.74rem;
-                font-weight: 600;
-                color: var(--text-muted);
-            }
-
-            #tl-bits .timeline-org .org-sep {
-                display: none;
-            }
-
-            #tl-bits .timeline-badge,
-            #tl-ddit .timeline-badge {
-                font-family: 'JetBrains Mono', monospace;
-                font-size: 8px;
-                line-height: 1;
-                padding: 1.5px 4.5px;
-                border-radius: 3px;
-                font-weight: 700;
-                letter-spacing: 0.03em;
-                background: var(--surface-hover);
-                color: var(--text-muted);
-                border: 1px solid var(--border-subtle);
-                margin-top: 1px;
-            }
-
-            .timeline-info-trigger {
-                position: relative;
-                width: 13px;
-                height: 13px;
-                font-size: 9px;
-                font-weight: 700;
-                line-height: 1;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-                background: transparent;
-                border: 1px solid var(--border-subtle);
-                color: var(--text-muted);
-                padding: 0;
-                flex-shrink: 0;
-                transition: all 0.15s ease;
-                margin-top: 2px;
-            }
-
-            .timeline-info-trigger::after {
-                content: '';
-                position: absolute;
-                inset: -10px;
-            }
-
-            .timeline-card-header:hover .timeline-info-trigger,
-            .timeline-content.show-popover .timeline-info-trigger {
-                border-color: var(--accent);
-                color: var(--accent-text);
-                background: var(--accent-bg);
-            }
-
-            .timeline-popover {
-                position: absolute;
-                z-index: 50;
-                width: 240px;
-                max-width: calc(100vw - 32px);
-                background: var(--surface);
-                border: 1.5px solid var(--accent);
-                border-radius: var(--radius-sm);
-                padding: 10px 12px;
-                box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.25);
-                display: flex;
-                flex-direction: column;
-                gap: 6px;
-                box-sizing: border-box;
-                opacity: 0;
-                visibility: hidden;
-                pointer-events: none;
-                transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
-                white-space: normal;
-                text-align: left;
-            }
-
-            .timeline-top .timeline-popover {
-                top: calc(100% + 8px);
-                bottom: auto;
-            }
-
-            .timeline-bottom .timeline-popover {
-                top: auto;
-                bottom: calc(100% + 8px);
-            }
-
-            #tl-cisco .timeline-popover {
-                left: 0;
-                right: auto;
-                transform: scale(0.96);
-                transform-origin: top left;
-            }
-
-            #tl-bits .timeline-popover {
-                left: 50%;
-                right: auto;
-                transform: translateX(-35%) scale(0.96);
-                transform-origin: bottom center;
-            }
-
-            #tl-tatvic .timeline-popover {
-                right: auto;
-                left: 50%;
-                transform: translateX(-65%) scale(0.96);
-                transform-origin: top center;
-            }
-
-            #tl-ddit .timeline-popover {
-                right: 0;
-                left: auto;
-                transform: scale(0.96);
-                transform-origin: bottom right;
-            }
-
-            .timeline-content.show-popover .timeline-popover {
-                opacity: 1;
-                visibility: visible;
-                pointer-events: auto;
-            }
-
-            #tl-cisco .timeline-content.show-popover .timeline-popover {
-                transform: scale(1);
-            }
-
-            #tl-bits .timeline-content.show-popover .timeline-popover {
-                transform: translateX(-35%) scale(1);
-            }
-
-            #tl-tatvic .timeline-content.show-popover .timeline-popover {
-                transform: translateX(-65%) scale(1);
-            }
-
-            #tl-ddit .timeline-content.show-popover .timeline-popover {
-                transform: scale(1);
-            }
-
-            .popover-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 6px;
-                border-bottom: 1px solid var(--border-subtle);
-                padding-bottom: 4px;
-                margin-bottom: 2px;
-            }
-
-            .popover-org {
-                font-size: 0.88rem;
-                font-weight: 700;
-                color: var(--text-main);
-                line-height: 1.2;
-            }
-
-            .popover-close {
-                width: 28px;
-                height: 28px;
-                font-size: 20px;
-                line-height: 1;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                padding: 0;
-            }
-
-            .popover-body {
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                overflow-y: auto;
-                max-height: 140px;
-            }
-
-            .popover-meta-item {
-                display: flex;
-                flex-direction: column;
-                gap: 1px;
-            }
-
-            .popover-label {
-                font-size: 9px;
-                font-weight: 700;
-                color: var(--accent);
-                text-transform: uppercase;
-                letter-spacing: 0.04em;
-                line-height: 1.2;
-            }
-
-            .popover-val {
-                font-size: 0.78rem;
-                font-weight: 500;
-                color: var(--text-secondary);
-                line-height: 1.3;
-            }
+        .skill-pill:hover {
+            background: var(--surface-hover);
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-1px);
         }
 
         /* Sidebar Bottom & Socials */
@@ -1086,14 +469,14 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
 
         .section-title {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.45rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.015em;
             color: var(--text-main);
         }
 
         .section-subtitle {
-            font-size: 0.88rem;
+            font-size: 0.84rem;
             color: var(--text-muted);
         }
 
@@ -1238,19 +621,19 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
 
         .project-name {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.22rem;
+            font-size: 1.06rem;
             font-weight: 700;
             letter-spacing: -0.015em;
             color: var(--text-main);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             line-height: 1.3;
         }
 
         .project-summary {
-            font-size: 0.93rem;
+            font-size: 0.88rem;
             color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 14px;
+            line-height: 1.52;
+            margin-bottom: 12px;
             flex-grow: 1;
         }
 
@@ -1540,189 +923,355 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             animation: cardSwitch 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Case Study In-Page View */
+        /* Case Study In-Page View (Vertical Project Stream & Vertical Rail) */
         .case-study-view {
-            max-width: 820px;
+            max-width: 920px;
+            width: 100%;
         }
 
-        .cs-top-bar {
+        /* Vertical Projects Layout */
+        .vertical-projects-layout {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        /* Desktop Sticky Vertical Navigation Rail */
+        .vertical-nav-rail {
+            width: 220px;
+            flex-shrink: 0;
             position: sticky;
-            top: 0;
-            z-index: 50;
-            background: var(--bg);
-            padding: 12px 0;
-            margin-bottom: 24px;
-            border-bottom: 1px solid var(--border-subtle);
+            top: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 14px 12px;
+            box-shadow: var(--shadow-subtle);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .vnav-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 4px;
         }
 
-        .cs-back-btn {
+        .vnav-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+        }
+
+        .vnav-grid-btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
+            gap: 5px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.74rem;
             font-weight: 600;
-            color: var(--text-muted);
-            background: var(--surface);
-            border: 1px solid var(--border-subtle);
-            padding: 8px 16px;
-            border-radius: var(--radius-md);
+            color: var(--accent);
+            background: var(--accent-bg);
+            border: 1px solid var(--accent);
+            padding: 3px 8px;
+            border-radius: var(--radius-sm);
             cursor: pointer;
             transition: all 0.15s ease;
         }
 
-        .cs-back-btn:hover {
+        .vnav-grid-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .vnav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .vnav-link {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 7px 9px;
+            border-radius: var(--radius-sm);
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-secondary);
+            text-align: left;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            line-height: 1.3;
+            transition: all 0.15s ease;
+            width: 100%;
+        }
+
+        .vnav-link:hover {
+            background: var(--surface-hover);
+            color: var(--text-main);
+            border-color: var(--border-subtle);
+        }
+
+        .vnav-link.active {
+            background: var(--accent-bg);
             color: var(--accent);
             border-color: var(--accent);
-            background: var(--accent-bg);
-            transform: translateX(-2px);
-        }
-
-        .cs-back-btn svg {
-            transition: transform 0.15s ease;
-        }
-
-        .cs-back-btn:hover svg {
-            transform: translateX(-2px);
-        }
-
-        .cs-nav-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .cs-meta-badge {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
             font-weight: 600;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            background: var(--surface);
-            border: 1px solid var(--border-subtle);
-            padding: 5px 12px;
-            border-radius: var(--radius-sm);
         }
 
-        .cs-quick-nav {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: var(--surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-sm);
-            padding: 2px;
-        }
-
-        .cs-quick-btn {
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            border: none;
+        .vnav-index {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
             color: var(--text-muted);
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.15s ease;
+            padding-top: 1px;
+            flex-shrink: 0;
         }
 
-        .cs-quick-btn:hover {
-            color: var(--text-main);
-            background: var(--surface-hover);
+        .vnav-link.active .vnav-index {
+            color: var(--accent);
+            font-weight: 700;
         }
 
-        .cs-quick-btn[disabled] {
-            opacity: 0.35;
-            cursor: not-allowed;
-            pointer-events: none;
+        .vnav-title {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        /* Case Study Card and Content */
-        .case-study-card {
+        /* Vertical Projects Stream */
+        .vertical-projects-stream {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Mobile Top Progress Bar (Like a sleek browser loading/reading indicator) */
+        .mobile-reading-progress {
+            display: none;
+        }
+
+        .mobile-stream-top-bar {
+            display: none;
+        }
+
+        .mobile-stream-floating-btn {
+            display: none;
+        }
+
+        @media (max-width: 1023px) {
+            .vertical-nav-rail {
+                display: none;
+            }
+
+            .site-shell.sidebar-collapsed .mobile-reading-progress {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 2.5px;
+                background: rgba(0, 0, 0, 0.05);
+                z-index: 9999;
+                pointer-events: none;
+            }
+
+            :root.theme-dark .site-shell.sidebar-collapsed .mobile-reading-progress {
+                background: rgba(255, 255, 255, 0.06);
+            }
+
+            .mobile-reading-progress-fill {
+                height: 100%;
+                width: 0%;
+                background: var(--accent);
+                box-shadow: 0 0 6px var(--accent);
+                transition: width 0.06s ease-out;
+            }
+
+            .mobile-stream-top-bar {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                margin-bottom: 12px;
+            }
+
+            .mobile-stream-grid-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                font-family: 'Outfit', sans-serif;
+                font-size: 0.78rem;
+                font-weight: 600;
+                color: var(--accent);
+                background: var(--surface);
+                border: 1px solid var(--border-subtle);
+                padding: 5px 11px;
+                border-radius: var(--radius-sm);
+                cursor: pointer;
+                transition: all 0.15s ease;
+            }
+
+            .mobile-stream-grid-btn:hover {
+                background: var(--accent-bg);
+                border-color: var(--accent);
+            }
+
+            .site-shell.sidebar-collapsed .mobile-stream-floating-btn {
+                display: inline-flex;
+                position: fixed;
+                bottom: 20px;
+                right: 16px;
+                z-index: 90;
+                align-items: center;
+                gap: 6px;
+                background: var(--surface);
+                border: 1px solid var(--border-medium);
+                color: var(--accent);
+                font-family: 'Outfit', sans-serif;
+                font-size: 0.78rem;
+                font-weight: 600;
+                padding: 8px 14px;
+                border-radius: 9999px;
+                box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
+                cursor: pointer;
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                transition: all 0.15s ease;
+            }
+
+            .mobile-stream-floating-btn:hover {
+                background: var(--accent-bg);
+                border-color: var(--accent);
+                transform: translateY(-2px);
+            }
+        }
+
+        /* Snackable 1-View Case Study Card */
+        .case-study-card.snackable-card {
             background: var(--surface);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: 36px 32px;
+            border-radius: var(--radius-md);
+            padding: 16px 18px;
             box-shadow: var(--shadow-card);
-            margin-bottom: 28px;
+            scroll-margin-top: 52px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .case-study-card.snackable-card:hover {
+            border-color: var(--border-medium);
+        }
+
+        .case-study-card.snackable-card.active-in-view {
+            border-color: var(--accent);
         }
 
         .project-heading-block {
-            margin-bottom: 28px;
-            padding-bottom: 20px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
             border-bottom: 1px dashed var(--border-subtle);
+        }
+
+        .project-heading-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 3px;
         }
 
         .project-meta-pill {
             display: inline-block;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 8px;
+        }
+
+        .project-view-index {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 600;
+            color: var(--text-muted);
         }
 
         .project-title {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.85rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.015em;
             color: var(--text-main);
             margin: 0;
-            line-height: 1.25;
+            line-height: 1.28;
+        }
+
+        .snackable-content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        @media (min-width: 700px) {
+            .snackable-content-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px 18px;
+            }
+
+            .study-section.full-span {
+                grid-column: span 2;
+            }
         }
 
         .study-section {
-            margin-bottom: 26px;
-        }
-
-        .study-section:last-child {
             margin-bottom: 0;
         }
 
         .section-label {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78rem;
+            font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: var(--accent);
-            margin-bottom: 8px;
+            margin-bottom: 3px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
 
         .section-body {
-            font-size: 0.96rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            line-height: 1.68;
+            line-height: 1.45;
+            margin: 0;
         }
 
         .approach-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 4px;
+            margin: 0;
+            padding: 0;
         }
 
         .approach-list li {
             position: relative;
-            padding-left: 20px;
-            font-size: 0.96rem;
+            padding-left: 14px;
+            font-size: 0.83rem;
             color: var(--text-secondary);
-            line-height: 1.62;
+            line-height: 1.4;
         }
 
         .approach-list li::before {
@@ -1737,8 +1286,8 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
         .stack-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 6px;
+            gap: 5px;
+            margin-top: 3px;
         }
 
         .stack-pill {
@@ -1747,51 +1296,11 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             border: 1px solid var(--tag-border);
             color: var(--tag-text);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.72rem;
             font-weight: 500;
-            padding: 4px 10px;
+            padding: 2px 7px;
             border-radius: var(--radius-sm);
-        }
-
-        .pagination-nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            margin-top: 24px;
-        }
-
-        .page-link-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--surface);
-            border: 1px solid var(--border-subtle);
-            color: var(--text-main);
-            padding: 10px 18px;
-            border-radius: var(--radius-md);
-            font-size: 0.88rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            box-shadow: var(--shadow-subtle);
-        }
-
-        .page-link-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-bg);
-            transform: translateY(-1px);
-        }
-
-        .page-link-btn[disabled] {
-            opacity: 0.4;
-            pointer-events: none;
-        }
-
-        .page-link-btn.page-link-back {
-            background: var(--surface-hover);
-            border-color: var(--border-medium);
+            white-space: nowrap;
         }
 
         .project-card {
@@ -1826,9 +1335,10 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             border-color: var(--accent) !important;
         }
 
-        /* Mobile floating dock for case study view */
+        /* Mobile project dock decommissioned per user request (horizontal navigation replacing next/back) */
+        div#site-shell:nth-of-type(1) > main#main-content-pane:nth-of-type(1) > div#mobile-cs-dock:nth-of-type(2),
         .mobile-cs-dock {
-            display: none;
+            display: none !important;
         }
 
         /* Mobile floating 'Back to Projects' jump button when scrolling main page */
@@ -1836,79 +1346,6 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             display: none;
         }
 
-        @media (max-width: 1023px) {
-            .mobile-cs-dock {
-                position: fixed;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                z-index: 100;
-                display: flex;
-                align-items: center;
-                gap: 6px;
-                background: var(--surface);
-                border: 1px solid var(--border-subtle);
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.08);
-                padding: 6px 10px;
-                border-radius: 9999px;
-                backdrop-filter: blur(16px);
-                -webkit-backdrop-filter: blur(16px);
-                animation: floatDockIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-            }
-
-            @keyframes floatDockIn {
-                from {
-                    opacity: 0;
-                    transform: translate(-50%, 16px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translate(-50%, 0);
-                }
-            }
-
-            .float-dock-btn {
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-                background: transparent;
-                border: none;
-                color: var(--text-main);
-                font-family: 'Outfit', sans-serif;
-                font-size: 0.88rem;
-                font-weight: 600;
-                padding: 8px 14px;
-                border-radius: 9999px;
-                cursor: pointer;
-                transition: all 0.15s ease;
-                min-height: 40px;
-            }
-
-            .float-dock-btn.float-dock-back {
-                background: var(--accent-bg);
-                color: var(--accent);
-                border: 1px solid var(--accent);
-            }
-
-            .float-dock-btn:active {
-                transform: scale(0.96);
-            }
-
-            .float-dock-divider {
-                width: 1px;
-                height: 20px;
-                background: var(--border-subtle);
-            }
-
-            .float-dock-arrow {
-                padding: 8px 10px;
-                color: var(--text-muted);
-            }
-
-            .float-dock-arrow[disabled] {
-                opacity: 0.35;
-                pointer-events: none;
-            }
 
             .mobile-jump-projects {
                 position: fixed;
@@ -1963,222 +1400,76 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                     <p class="profile-headline" id="profile-headline">Senior Software Engineer</p>
                     <p class="profile-subheadline" id="profile-subheadline">Security &amp; Data Systems</p>
                     <p class="profile-bio" id="profile-bio">
-                        Building production security products, high-throughput cloud data platforms, and performant web applications. Experience spanning multi-engine threat defense, regulated search infrastructure (FedRAMP/OpenSearch), dbt/Redshift analytics, and developer tooling.
+                        Building secure cloud platforms, high-throughput data pipelines, and performant web apps. Core focus on threat defense, search infrastructure, and analytics.
                     </p>
                 </header>
 
                 <hr class="sidebar-divider" aria-hidden="true">
 
-                <!-- Timeline: Experience & Education -->
-                <section class="timeline-section" id="sidebar-timeline" aria-label="Career and Education Timeline">
-                    <div class="timeline-header-row">
-                        <div class="timeline-header-label">TIMELINE</div>
-                        <span class="timeline-scroll-hint" aria-hidden="true">Scroll &rarr;</span>
-                    </div>
-                    <ol class="timeline-list" id="timeline-list">
-                        <!-- Cisco -->
-                        <li class="timeline-item timeline-top" id="tl-cisco">
-                            <div class="timeline-content" id="card-cisco">
-                                <div class="timeline-card-header">
-                                    <div class="timeline-org-row">
-                                        <span class="timeline-org">Cisco</span>
-                                    </div>
-                                    <button type="button" class="timeline-info-trigger" aria-label="More details about Cisco" aria-expanded="false" data-target="popover-cisco" id="btn-info-cisco" title="View details">
-                                        <span class="info-icon" aria-hidden="true">i</span>
-                                    </button>
+                <!-- Experience, Education ("Four Lines" Stacked Layout) & Skill Pills -->
+                <div class="sidebar-exp-edu" id="sidebar-exp-edu">
+                    <!-- Experience -->
+                    <section class="sidebar-block" id="sidebar-experience" aria-label="Professional Experience">
+                        <h2 class="sidebar-section-title" id="heading-experience">Experience</h2>
+                        <div class="stacked-entry-list" id="list-experience">
+                            <div class="stacked-entry" id="exp-cisco">
+                                <div class="entry-row-top">
+                                    <span class="entry-institution">Cisco</span>
+                                    <span class="entry-date">2017 &ndash; Present</span>
                                 </div>
-                                <div class="timeline-period">2017 &ndash; Present</div>
-                                <div class="timeline-role">Data Platform &amp; Security Engineering</div>
-                                <div class="timeline-location">Bangalore, India</div>
+                                <div class="entry-row-sub">Senior Software Engineer</div>
+                            </div>
 
-                                <!-- Details Popover -->
-                                <div class="timeline-popover" id="popover-cisco" role="region" aria-label="Cisco details">
-                                    <div class="popover-header">
-                                        <span class="popover-org">Cisco Systems</span>
-                                        <button type="button" class="popover-close" aria-label="Close details">&times;</button>
-                                    </div>
-                                    <div class="popover-body">
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Designation</span>
-                                            <span class="popover-val">Data Platform &amp; Security Engineering</span>
-                                        </div>
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Location</span>
-                                            <span class="popover-val">Bangalore, India</span>
-                                        </div>
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Period</span>
-                                            <span class="popover-val">2017 &ndash; Present</span>
-                                        </div>
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Specialization</span>
-                                            <span class="popover-val">Threat defense, OpenSearch clusters, AWS &amp; multi-engine scanning</span>
-                                        </div>
-                                    </div>
+                            <div class="stacked-entry" id="exp-tatvic">
+                                <div class="entry-row-top">
+                                    <span class="entry-institution">Tatvic</span>
+                                    <span class="entry-date">2013 &ndash; 2015</span>
                                 </div>
+                                <div class="entry-row-sub">Software Engineer</div>
                             </div>
-                            <div class="timeline-stem stem-card" aria-hidden="true"></div>
-                            <div class="timeline-marker" aria-hidden="true"></div>
-                            <div class="timeline-stem stem-year" aria-hidden="true"></div>
-                            <div class="timeline-dot-year" aria-label="2017 to Now">
-                                <span class="year-primary">2017</span><span class="year-range">&ndash;Now</span>
-                            </div>
-                            <div class="timeline-spacer" aria-hidden="true"></div>
-                        </li>
+                        </div>
+                    </section>
 
-                        <!-- BITS Pilani -->
-                        <li class="timeline-item timeline-bottom" id="tl-bits">
-                            <div class="timeline-spacer" aria-hidden="true"></div>
-                            <div class="timeline-dot-year" aria-label="2015 to 2017">
-                                <span class="year-primary">2015</span><span class="year-range">&ndash;17</span>
-                            </div>
-                            <div class="timeline-stem stem-year" aria-hidden="true"></div>
-                            <div class="timeline-marker edu" aria-hidden="true"></div>
-                            <div class="timeline-stem stem-card" aria-hidden="true"></div>
-                            <div class="timeline-content" id="card-bits">
-                                <div class="timeline-card-header">
-                                    <div class="timeline-org-row">
-                                        <span class="timeline-org"><span class="org-word">BITS</span><span class="org-sep"> </span><span class="org-word">Pilani</span></span>
-                                        <span class="timeline-badge">M.E.</span>
-                                    </div>
-                                    <button type="button" class="timeline-info-trigger" aria-label="More details about BITS Pilani" aria-expanded="false" data-target="popover-bits" id="btn-info-bits" title="View details">
-                                        <span class="info-icon" aria-hidden="true">i</span>
-                                    </button>
+                    <!-- Education -->
+                    <section class="sidebar-block" id="sidebar-education" aria-label="Education">
+                        <h2 class="sidebar-section-title" id="heading-education">Education</h2>
+                        <div class="stacked-entry-list" id="list-education">
+                            <div class="stacked-entry" id="edu-bits">
+                                <div class="entry-row-top">
+                                    <span class="entry-institution">BITS Pilani</span>
+                                    <span class="entry-date">2015 &ndash; 2017</span>
                                 </div>
-                                <div class="timeline-period">2015 &ndash; 2017</div>
-                                <div class="timeline-role">M.E. Software Systems</div>
-                                <div class="timeline-location">Pilani </div>
+                                <div class="entry-row-sub">M.E. Software Systems</div>
+                            </div>
 
-                                <!-- Details Popover -->
-                                <div class="timeline-popover" id="popover-bits" role="region" aria-label="BITS Pilani details">
-                                    <div class="popover-header">
-                                        <span class="popover-org">BITS Pilani</span>
-                                        <button type="button" class="popover-close" aria-label="Close details">&times;</button>
-                                    </div>
-                                    <div class="popover-body">
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Degree</span>
-                                            <span class="popover-val">M.E. Software Systems</span>
-                                        </div>
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Location</span>
-                                            <span class="popover-val">Pilani, Rajasthan</span>
-                                        </div>
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Period</span>
-                                            <span class="popover-val">2015 &ndash; 2017</span>
-                                        </div>
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Specialization</span>
-                                            <span class="popover-val">Master of Engineering · Distributed Systems &amp; Cloud Computing</span>
-                                        </div>
-                                    </div>
+                            <div class="stacked-entry" id="edu-ddit">
+                                <div class="entry-row-top">
+                                    <span class="entry-institution">DDIT</span>
+                                    <span class="entry-date">2009 &ndash; 2013</span>
                                 </div>
+                                <div class="entry-row-sub">B.Tech Information Technology</div>
                             </div>
-                        </li>
+                        </div>
+                    </section>
 
-                        <!-- Tatvic -->
-                        <li class="timeline-item timeline-top" id="tl-tatvic">
-                            <div class="timeline-content" id="card-tatvic">
-                                <div class="timeline-card-header">
-                                    <div class="timeline-org-row">
-                                        <span class="timeline-org">Tatvic</span>
-                                    </div>
-                                    <button type="button" class="timeline-info-trigger" aria-label="More details about Tatvic" aria-expanded="false" data-target="popover-tatvic" id="btn-info-tatvic" title="View details">
-                                        <span class="info-icon" aria-hidden="true">i</span>
-                                    </button>
-                                </div>
-                                <div class="timeline-period">2013 &ndash; 2015</div>
-                                <div class="timeline-role">Technical Analyst · E-commerce</div>
-                                <div class="timeline-location">Ahmedabad, India</div>
-
-                                <!-- Details Popover -->
-                                <div class="timeline-popover" id="popover-tatvic" role="region" aria-label="Tatvic details">
-                                    <div class="popover-header">
-                                        <span class="popover-org">Tatvic Analytics</span>
-                                        <button type="button" class="popover-close" aria-label="Close details">&times;</button>
-                                    </div>
-                                    <div class="popover-body">
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Designation</span>
-                                            <span class="popover-val">Technical Analyst · E-commerce</span>
-                                        </div>
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Location</span>
-                                            <span class="popover-val">Ahmedabad, Gujarat, India</span>
-                                        </div>
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Period</span>
-                                            <span class="popover-val">2013 &ndash; 2015</span>
-                                        </div>
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Specialization</span>
-                                            <span class="popover-val">E-commerce analytics pipelines, GTM integrations &amp; anomaly models</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="timeline-stem stem-card" aria-hidden="true"></div>
-                            <div class="timeline-marker" aria-hidden="true"></div>
-                            <div class="timeline-stem stem-year" aria-hidden="true"></div>
-                            <div class="timeline-dot-year" aria-label="2013 to 2015">
-                                <span class="year-primary">2013</span><span class="year-range">&ndash;15</span>
-                            </div>
-                            <div class="timeline-spacer" aria-hidden="true"></div>
-                        </li>
-
-                        <!-- DDIT -->
-                        <li class="timeline-item timeline-bottom" id="tl-ddit">
-                            <div class="timeline-spacer" aria-hidden="true"></div>
-                            <div class="timeline-dot-year" aria-label="2009 to 2013">
-                                <span class="year-primary">2009</span><span class="year-range">&ndash;13</span>
-                            </div>
-                            <div class="timeline-stem stem-year" aria-hidden="true"></div>
-                            <div class="timeline-marker edu" aria-hidden="true"></div>
-                            <div class="timeline-stem stem-card" aria-hidden="true"></div>
-                            <div class="timeline-content" id="card-ddit">
-                                <div class="timeline-card-header">
-                                    <div class="timeline-org-row">
-                                        <span class="timeline-org">DDIT</span>
-                                        <span class="timeline-badge">B.Tech</span>
-                                    </div>
-                                    <button type="button" class="timeline-info-trigger" aria-label="More details about DDIT" aria-expanded="false" data-target="popover-ddit" id="btn-info-ddit" title="View details">
-                                        <span class="info-icon" aria-hidden="true">i</span>
-                                    </button>
-                                </div>
-                                <div class="timeline-period">2009 &ndash; 2013</div>
-                                <div class="timeline-role">B.Tech Information Technology</div>
-                                <div class="timeline-location">Dharmsinh Desai University</div>
-
-                                <!-- Details Popover -->
-                                <div class="timeline-popover" id="popover-ddit" role="region" aria-label="DDIT details">
-                                    <div class="popover-header">
-                                        <span class="popover-org">DDIT (Dharmsinh Desai Univ)</span>
-                                        <button type="button" class="popover-close" aria-label="Close details">&times;</button>
-                                    </div>
-                                    <div class="popover-body">
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Degree</span>
-                                            <span class="popover-val">B.Tech Information Technology</span>
-                                        </div>
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Location</span>
-                                            <span class="popover-val">Nadiad, Gujarat, India</span>
-                                        </div>
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Period</span>
-                                            <span class="popover-val">2009 &ndash; 2013</span>
-                                        </div>
-                                        <div class="popover-meta-item">
-                                            <span class="popover-label">Classification</span>
-                                            <span class="popover-val">Bachelor of Technology · First Class with Distinction · Systems &amp; DBs</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ol>
-                </section>
+                    <!-- Skill Pills -->
+                    <section class="sidebar-block" id="sidebar-skills" aria-label="Skills">
+                        <h2 class="sidebar-section-title" id="heading-skills">Skills</h2>
+                        <div class="skills-pill-container" id="skills-pill-container">
+                            <span class="skill-pill" id="skill-python">Python</span>
+                            <span class="skill-pill" id="skill-go">Go</span>
+                            <span class="skill-pill" id="skill-typescript">TypeScript</span>
+                            <span class="skill-pill" id="skill-aws">AWS</span>
+                            <span class="skill-pill" id="skill-terraform">Terraform</span>
+                            <span class="skill-pill" id="skill-angular">Angular</span>
+                            <span class="skill-pill" id="skill-opensearch">OpenSearch</span>
+                            <span class="skill-pill" id="skill-redshift">Redshift</span>
+                            <span class="skill-pill" id="skill-dbt">dbt</span>
+                            <span class="skill-pill" id="skill-vectordbs">Vector Databases</span>
+                            <span class="skill-pill" id="skill-django">Django</span>
+                        </div>
+                    </section>
+                </div>
             </div>
 
             <div class="sidebar-bottom">
@@ -2256,7 +1547,7 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                 <div class="project-controls" id="project-controls">
                     <div class="search-and-filters" id="search-and-filters">
                         <div class="filter-tabs" id="filter-tabs" role="tablist" aria-label="Filter projects">
-                            <button class="filter-btn active" data-filter="all" id="btn-filter-all" role="tab" aria-selected="true">All Case Studies ({totalCount})</button>
+                            <button class="filter-btn active" data-filter="all" id="btn-filter-all" role="tab" aria-selected="true">All Projects ({totalCount})</button>
                             <button class="filter-btn" data-filter="security" id="btn-filter-security" role="tab" aria-selected="false">Security ({securityCount})</button>
                             <button class="filter-btn" data-filter="data" id="btn-filter-data" role="tab" aria-selected="false">Data Systems ({dataCount})</button>
                             <button class="filter-btn" data-filter="web" id="btn-filter-web" role="tab" aria-selected="false">Web &amp; Open Source ({webCount})</button>
@@ -2276,11 +1567,11 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                             <div>
                                 <div class="card-top-meta">
                                     <span class="project-category-tag">{p.metaPill}</span>
-                                    <span class="featured-badge">Case Study</span>
+                                    <span class="featured-badge">Project</span>
                                 </div>
                                 <h3 class="project-name">{p.title}</h3>
-                                <a href={`/project-${p.id}.html`} class="case-study-link" id={`link-study-${p.id}`}>
-                                    <span>Read Case Study</span>
+                                <a href={`#project-${p.id}`} class="case-study-link" id={`link-study-${p.id}`} data-project-id={p.id}>
+                                    <span>View Project</span>
                                     <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-7.85-1.42 1.42 5.43 5.43H5v2z"/></svg>
                                 </a>
                             </div>
@@ -2325,86 +1616,100 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                 </div>
             </section>
 
-            <!-- In-Page Case Study View (Dynamic SPA Display) -->
+            <!-- In-Page Project View (Continuous Vertical Project Stream with Sticky Vertical Rail) -->
             <div class="case-study-view" id="case-study-view" style="display: none;" aria-live="polite">
-                <!-- Top Navigation Bar -->
-                <div class="cs-top-bar" id="cs-top-bar">
-                    <button type="button" class="cs-back-btn" id="cs-back-btn" aria-label="Back to Projects Overview">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-                        <span>Back to Overview</span>
-                    </button>
-
-                    <div class="cs-nav-right">
-                        <span class="cs-meta-badge" id="cs-top-badge">Case Study</span>
-                        <div class="cs-quick-nav">
-                            <button type="button" class="cs-quick-btn" id="cs-quick-prev" title="Previous Case Study" aria-label="Previous Case Study">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-                            </button>
-                            <button type="button" class="cs-quick-btn" id="cs-quick-next" title="Next Case Study" aria-label="Next Case Study">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                            </button>
-                        </div>
-                    </div>
+                <!-- Mobile Fixed Reading Progress Bar (Very thin, at the very top like a loading bar) -->
+                <div class="mobile-reading-progress" id="mobile-reading-progress" aria-hidden="true">
+                    <div class="mobile-reading-progress-fill" id="mobile-reading-progress-fill"></div>
                 </div>
 
-                <!-- Case Study Content Card -->
-                <article class="case-study-card" id="cs-card">
-                    <div class="project-heading-block">
-                        <span class="project-meta-pill" id="cs-meta-pill"></span>
-                        <h1 class="project-title" id="cs-title"></h1>
+                <div class="vertical-projects-layout">
+                    <!-- Desktop Sticky Vertical Navigation Rail -->
+                    <aside class="vertical-nav-rail" id="vertical-nav-rail" aria-label="Projects Table of Contents">
+                        <div class="vnav-header">
+                            <span class="vnav-label">Projects ({totalCount})</span>
+                            <button type="button" class="vnav-grid-btn" id="vnav-grid-btn" title="Back to 2-column Grid Overview">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"/></svg>
+                                <span>Grid View</span>
+                            </button>
+                        </div>
+                        <nav class="vnav-list" role="navigation">
+                            {projects.map((p, index) => (
+                                <button
+                                    type="button"
+                                    class="vnav-link"
+                                    id={`vnav-link-${p.id}`}
+                                    data-project-id={p.id}
+                                    title={p.title}
+                                >
+                                    <span class="vnav-index">{String(index + 1).padStart(2, '0')}</span>
+                                    <span class="vnav-title">{p.title}</span>
+                                </button>
+                            ))}
+                        </nav>
+                    </aside>
+
+                    <!-- Continuous Vertical Project Stream (Snackable 1-View Cards) -->
+                    <div class="vertical-projects-stream" id="vertical-projects-stream">
+                        <!-- Mobile Top Return to Grid Bar -->
+                        <div class="mobile-stream-top-bar" id="mobile-stream-top-bar">
+                            <button type="button" class="mobile-stream-grid-btn" id="mobile-stream-grid-btn" title="Back to Grid View">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                                <span>Back to Grid View</span>
+                            </button>
+                        </div>
+
+                        <!-- Mobile Floating Return to Grid Button (Bottom corner) -->
+                        <button type="button" class="mobile-stream-floating-btn" id="mobile-stream-floating-btn" title="Back to Grid View" aria-label="Back to Grid View">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"/></svg>
+                            <span>Grid View</span>
+                        </button>
+
+                        {projects.map((p, index) => (
+                            <article class="case-study-card snackable-card" id={`project-card-view-${p.id}`} data-project-id={p.id}>
+                                <div class="project-heading-block">
+                                    <div class="project-heading-top">
+                                        <span class="project-meta-pill">{p.metaPill}</span>
+                                        <span class="project-view-index">#{String(index + 1).padStart(2, '0')}</span>
+                                    </div>
+                                    <h2 class="project-title">{p.title}</h2>
+                                </div>
+
+                                <div class="snackable-content-grid">
+                                    <section class="study-section full-span">
+                                        <h4 class="section-label">Challenge</h4>
+                                        <p class="section-body">{p.challenge}</p>
+                                    </section>
+
+                                    <section class="study-section">
+                                        <h4 class="section-label">Approach</h4>
+                                        <ul class="approach-list">
+                                            {p.approach.map(item => (
+                                                <li>{item}</li>
+                                            ))}
+                                        </ul>
+                                    </section>
+
+                                    <div class="study-section-stacked">
+                                        <section class="study-section">
+                                            <h4 class="section-label">Outcome</h4>
+                                            <p class="section-body">{p.outcome}</p>
+                                        </section>
+
+                                        <section class="study-section stack-section" style="margin-top: 8px;">
+                                            <h4 class="section-label">Stack</h4>
+                                            <div class="stack-tags">
+                                                {p.stack.map(tech => (
+                                                    <span class="stack-pill">{tech}</span>
+                                                ))}
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </article>
+                        ))}
                     </div>
-
-                    <section class="study-section">
-                        <h4 class="section-label">Challenge</h4>
-                        <p class="section-body" id="cs-challenge"></p>
-                    </section>
-
-                    <section class="study-section">
-                        <h4 class="section-label">Approach</h4>
-                        <ul class="approach-list" id="cs-approach"></ul>
-                    </section>
-
-                    <section class="study-section">
-                        <h4 class="section-label">Outcome</h4>
-                        <p class="section-body" id="cs-outcome"></p>
-                    </section>
-
-                    <section class="study-section">
-                        <h4 class="section-label">Stack</h4>
-                        <div class="stack-tags" id="cs-stack"></div>
-                    </section>
-                </article>
-
-                <!-- Bottom Pagination Navigation -->
-                <nav class="pagination-nav" id="cs-pagination-nav" aria-label="Case study navigation">
-                    <button type="button" class="page-link-btn" id="cs-page-prev">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-                        <span id="cs-prev-title">Previous Case Study</span>
-                    </button>
-                    <button type="button" class="page-link-btn page-link-back" id="cs-page-back-btn" aria-label="Back to project card in vertical list">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-                        <span>Back to Project</span>
-                    </button>
-                    <button type="button" class="page-link-btn" id="cs-page-next">
-                        <span id="cs-next-title">Next Case Study</span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-                    </button>
-                </nav>
-            </div>
-
-            <!-- Mobile Floating Dock (Quick Back & Controls during vertical scroll in Case Study) -->
-            <div class="mobile-cs-dock" id="mobile-cs-dock" style="display: none;" aria-label="Mobile case study actions">
-                <button type="button" class="float-dock-btn float-dock-back" id="mobile-dock-back" aria-label="Back to project in vertical list">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-                    <span>Back to Project</span>
-                </button>
-                <div class="float-dock-divider"></div>
-                <button type="button" class="float-dock-btn float-dock-arrow" id="mobile-dock-prev" title="Previous case study" aria-label="Previous case study">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-                </button>
-                <button type="button" class="float-dock-btn float-dock-arrow" id="mobile-dock-next" title="Next case study" aria-label="Next case study">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                </button>
+                </div>
             </div>
 
             <!-- Mobile Floating Button to jump back to Projects from deep vertical scroll on main page -->
@@ -2567,86 +1872,7 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             // Initial view
             updateProjectVisibility();
 
-            // Timeline Interactive Info Triggers & Popover Toggle
-            const timelineCards = document.querySelectorAll('.timeline-content');
-            const infoTriggers = document.querySelectorAll('.timeline-info-trigger');
-            const popoverCloses = document.querySelectorAll('.timeline-popover .popover-close');
-
-            function closeAllTimelinePopovers() {
-                timelineCards.forEach(card => {
-                    card.classList.remove('show-popover');
-                    const trigger = card.querySelector('.timeline-info-trigger');
-                    if (trigger) {
-                        trigger.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-
-            const cardHeaders = document.querySelectorAll('.timeline-card-header');
-
-            cardHeaders.forEach(header => {
-                header.addEventListener('click', (e) => {
-                    if (e.target.closest('.timeline-info-trigger') || e.target.closest('.timeline-popover')) {
-                        return;
-                    }
-                    e.stopPropagation();
-                    const card = header.closest('.timeline-content');
-                    if (!card) return;
-
-                    const trigger = card.querySelector('.timeline-info-trigger');
-                    const isOpen = card.classList.contains('show-popover');
-                    closeAllTimelinePopovers();
-
-                    if (!isOpen) {
-                        card.classList.add('show-popover');
-                        if (trigger) trigger.setAttribute('aria-expanded', 'true');
-                        const closeBtn = card.querySelector('.popover-close');
-                        if (closeBtn) {
-                            closeBtn.focus();
-                        }
-                    }
-                });
-            });
-
-            infoTriggers.forEach(trigger => {
-                trigger.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const card = trigger.closest('.timeline-content');
-                    if (!card) return;
-
-                    const isOpen = card.classList.contains('show-popover');
-                    closeAllTimelinePopovers();
-
-                    if (!isOpen) {
-                        card.classList.add('show-popover');
-                        trigger.setAttribute('aria-expanded', 'true');
-                        const closeBtn = card.querySelector('.popover-close');
-                        if (closeBtn) {
-                            closeBtn.focus();
-                        }
-                    }
-                });
-            });
-
-            popoverCloses.forEach(btn => {
-                const handleClose = (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    closeAllTimelinePopovers();
-                    if (document.activeElement && typeof document.activeElement.blur === 'function') {
-                        document.activeElement.blur();
-                    }
-                };
-                btn.addEventListener('click', handleClose);
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.timeline-content')) {
-                    closeAllTimelinePopovers();
-                }
-            });
-
-            // In-Page Case Study Dynamic Navigation & Sidebar Collapse
+            // Vertical Projects Stream & Sticky Vertical Rail
             const projectsDataEl = document.getElementById('projects-data');
             const allProjects = projectsDataEl ? JSON.parse(projectsDataEl.textContent || '[]') : [];
 
@@ -2654,116 +1880,63 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             const projectsSection = document.getElementById('projects-section');
             const caseStudyView = document.getElementById('case-study-view');
 
-            const csMetaPill = document.getElementById('cs-meta-pill');
-            const csTitle = document.getElementById('cs-title');
-            const csChallenge = document.getElementById('cs-challenge');
-            const csApproach = document.getElementById('cs-approach');
-            const csOutcome = document.getElementById('cs-outcome');
-            const csStack = document.getElementById('cs-stack');
-            const csCard = document.getElementById('cs-card');
-
-            const csBackBtn = document.getElementById('cs-back-btn');
+            const vnavGridBtn = document.getElementById('vnav-grid-btn');
+            const mobileProgressFill = document.getElementById('mobile-reading-progress-fill');
+            const mobileStreamGridBtn = document.getElementById('mobile-stream-grid-btn');
+            const mobileStreamFloatingBtn = document.getElementById('mobile-stream-floating-btn');
             const railExpandBtn = document.getElementById('rail-expand-btn');
-            const csQuickPrev = document.getElementById('cs-quick-prev');
-            const csQuickNext = document.getElementById('cs-quick-next');
-            const csPagePrev = document.getElementById('cs-page-prev');
-            const csPageNext = document.getElementById('cs-page-next');
-            const csPageBackBtn = document.getElementById('cs-page-back-btn');
-            const csPrevTitle = document.getElementById('cs-prev-title');
-            const csNextTitle = document.getElementById('cs-next-title');
-
-            const mobileCsDock = document.getElementById('mobile-cs-dock');
-            const mobileDockBack = document.getElementById('mobile-dock-back');
-            const mobileDockPrev = document.getElementById('mobile-dock-prev');
-            const mobileDockNext = document.getElementById('mobile-dock-next');
             const mobileJumpProjects = document.getElementById('mobile-jump-projects');
 
             let activeProjectId = null;
+            let isUserScrollingProgrammatically = false;
 
-            function renderCaseStudy(project, animateCard = true) {
+            function updateMobileProgressBar() {
+                if (!caseStudyView || caseStudyView.style.display === 'none' || !mobileProgressFill) {
+                    if (mobileProgressFill) mobileProgressFill.style.width = '0%';
+                    return;
+                }
+                const docEl = document.documentElement;
+                const scrollTop = window.scrollY || docEl.scrollTop || 0;
+                const viewTop = caseStudyView.offsetTop || 0;
+                const viewHeight = caseStudyView.offsetHeight || 1;
+                const clientHeight = window.innerHeight || docEl.clientHeight || 1;
+
+                const scrollableDistance = viewHeight - clientHeight;
+                let progress = 0;
+                if (scrollableDistance > 0) {
+                    progress = ((scrollTop - viewTop) / scrollableDistance) * 100;
+                    progress = Math.min(100, Math.max(0, progress));
+                } else {
+                    progress = 100;
+                }
+                mobileProgressFill.style.width = `${progress}%`;
+            }
+
+            window.addEventListener('scroll', updateMobileProgressBar, { passive: true });
+            window.addEventListener('resize', updateMobileProgressBar, { passive: true });
+
+            function updateActiveProjectIndicator(projectId, updateUrl = true) {
+                activeProjectId = projectId;
+                const project = allProjects.find(p => p.id === projectId);
+
                 if (!project) return;
-                activeProjectId = project.id;
 
-                if (csMetaPill) csMetaPill.textContent = project.metaPill || '';
-                if (csTitle) csTitle.textContent = project.title || '';
-                if (csChallenge) csChallenge.textContent = project.challenge || '';
+                // Update vertical nav rail links
+                document.querySelectorAll('.vnav-link').forEach(link => {
+                    const isCurrent = link.getAttribute('data-project-id') === projectId;
+                    link.classList.toggle('active', isCurrent);
+                });
 
-                if (csApproach) {
-                    csApproach.innerHTML = '';
-                    (project.approach || []).forEach(item => {
-                        const li = document.createElement('li');
-                        li.textContent = item;
-                        csApproach.appendChild(li);
-                    });
-                }
+                document.title = `${project.title} | Project | Sudhir Mishra`;
 
-                if (csOutcome) csOutcome.textContent = project.outcome || '';
-
-                if (csStack) {
-                    csStack.innerHTML = '';
-                    (project.stack || []).forEach(tech => {
-                        const span = document.createElement('span');
-                        span.className = 'stack-pill';
-                        span.textContent = tech;
-                        csStack.appendChild(span);
-                    });
-                }
-
-                const idx = allProjects.findIndex(p => p.id === project.id);
-                const prevProj = idx > 0 ? allProjects[idx - 1] : null;
-                const nextProj = idx < allProjects.length - 1 ? allProjects[idx + 1] : null;
-
-                if (csQuickPrev) {
-                    csQuickPrev.disabled = !prevProj;
-                    csQuickPrev.title = prevProj ? `Previous: ${prevProj.title}` : 'No previous case study';
-                }
-                if (csQuickNext) {
-                    csQuickNext.disabled = !nextProj;
-                    csQuickNext.title = nextProj ? `Next: ${nextProj.title}` : 'No next case study';
-                }
-
-                if (mobileDockPrev) {
-                    mobileDockPrev.disabled = !prevProj;
-                    mobileDockPrev.title = prevProj ? `Previous: ${prevProj.title}` : 'No previous case study';
-                }
-                if (mobileDockNext) {
-                    mobileDockNext.disabled = !nextProj;
-                    mobileDockNext.title = nextProj ? `Next: ${nextProj.title}` : 'No next case study';
-                }
-
-                if (csPagePrev) {
-                    if (prevProj) {
-                        csPagePrev.style.display = 'inline-flex';
-                        if (csPrevTitle) csPrevTitle.textContent = `Prev: ${prevProj.title}`;
-                    } else {
-                        csPagePrev.style.display = 'none';
-                    }
-                }
-
-                if (csPageNext) {
-                    if (nextProj) {
-                        csPageNext.style.display = 'inline-flex';
-                        if (csNextTitle) csNextTitle.textContent = `Next: ${nextProj.title}`;
-                    } else {
-                        csPageNext.style.display = 'none';
-                    }
-                }
-
-                document.title = `${project.title} | Case Study | Sudhir Mishra`;
-
-                if (animateCard && csCard) {
-                    csCard.classList.remove('animating-switch');
-                    void csCard.offsetWidth;
-                    csCard.classList.add('animating-switch');
+                if (updateUrl && window.location.hash !== `#project-${projectId}`) {
+                    history.replaceState({ projectId }, '', `#project-${projectId}`);
                 }
             }
 
             function openCaseStudy(projectId, pushState = true) {
                 const project = allProjects.find(p => p.id === projectId);
                 if (!project) return;
-
-                closeAllTimelinePopovers();
-                renderCaseStudy(project, true);
 
                 if (siteShell) siteShell.classList.add('sidebar-collapsed');
                 if (projectsSection) projectsSection.style.display = 'none';
@@ -2775,32 +1948,43 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                     caseStudyView.classList.add('animating-in');
                 }
 
-                if (mobileCsDock) {
-                    mobileCsDock.style.display = 'flex';
-                }
                 if (mobileJumpProjects) {
                     mobileJumpProjects.classList.remove('is-visible');
                 }
 
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                updateActiveProjectIndicator(projectId, pushState);
+
+                // Smoothly scroll down to the selected project card in the stream
+                isUserScrollingProgrammatically = true;
+                setTimeout(() => {
+                    const targetCard = document.getElementById(`project-card-view-${projectId}`);
+                    if (targetCard) {
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        targetCard.classList.add('active-in-view');
+                    }
+                    setTimeout(() => {
+                        isUserScrollingProgrammatically = false;
+                    }, 600);
+                }, 40);
 
                 if (pushState) {
                     history.pushState({ projectId: project.id }, '', `#project-${project.id}`);
                 }
+                setTimeout(updateMobileProgressBar, 80);
             }
 
             function closeCaseStudy(pushState = true) {
                 const targetId = activeProjectId;
                 activeProjectId = null;
 
+                if (mobileProgressFill) {
+                    mobileProgressFill.style.width = '0%';
+                }
+
                 if (siteShell) siteShell.classList.remove('sidebar-collapsed');
 
                 if (caseStudyView) {
                     caseStudyView.style.display = 'none';
-                }
-
-                if (mobileCsDock) {
-                    mobileCsDock.style.display = 'none';
                 }
 
                 if (projectsSection) {
@@ -2810,7 +1994,7 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                     projectsSection.classList.add('animating-in');
                 }
 
-                // Scroll directly back to the project card in the vertical list!
+                // Scroll directly back to the project card in the grid overview!
                 if (targetId) {
                     const targetCard = document.getElementById(`project-card-${targetId}`);
                     if (targetCard) {
@@ -2836,11 +2020,19 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                 const idx = allProjects.findIndex(p => p.id === activeProjectId);
                 const target = direction === 'prev' ? allProjects[idx - 1] : allProjects[idx + 1];
                 if (target) {
-                    openCaseStudy(target.id, true);
+                    const targetCard = document.getElementById(`project-card-view-${target.id}`);
+                    if (targetCard) {
+                        isUserScrollingProgrammatically = true;
+                        updateActiveProjectIndicator(target.id, true);
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        setTimeout(() => {
+                            isUserScrollingProgrammatically = false;
+                        }, 600);
+                    }
                 }
             }
 
-            // Click listener for all project cards and links
+            // Click listener for project cards in 2-column main grid
             projectCards.forEach(card => {
                 card.addEventListener('click', (e) => {
                     const cardId = card.id || '';
@@ -2852,19 +2044,63 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                 });
             });
 
-            // Back & Expand Actions
-            if (csBackBtn) csBackBtn.addEventListener('click', () => closeCaseStudy(true));
-            if (railExpandBtn) railExpandBtn.addEventListener('click', () => closeCaseStudy(true));
-            if (csPageBackBtn) csPageBackBtn.addEventListener('click', () => closeCaseStudy(true));
-            if (mobileDockBack) mobileDockBack.addEventListener('click', () => closeCaseStudy(true));
+            // Vertical nav rail links click listeners
+            document.querySelectorAll('.vnav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    const id = link.getAttribute('data-project-id');
+                    if (id) {
+                        const targetCard = document.getElementById(`project-card-view-${id}`);
+                        if (targetCard) {
+                            isUserScrollingProgrammatically = true;
+                            updateActiveProjectIndicator(id, true);
+                            targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            setTimeout(() => {
+                                isUserScrollingProgrammatically = false;
+                            }, 600);
+                        }
+                    }
+                });
+            });
 
-            // Navigation Buttons
-            if (csQuickPrev) csQuickPrev.addEventListener('click', () => navigateAdjacent('prev'));
-            if (csQuickNext) csQuickNext.addEventListener('click', () => navigateAdjacent('next'));
-            if (mobileDockPrev) mobileDockPrev.addEventListener('click', () => navigateAdjacent('prev'));
-            if (mobileDockNext) mobileDockNext.addEventListener('click', () => navigateAdjacent('next'));
-            if (csPagePrev) csPagePrev.addEventListener('click', () => navigateAdjacent('prev'));
-            if (csPageNext) csPageNext.addEventListener('click', () => navigateAdjacent('next'));
+            // IntersectionObserver for vertical scrolling through project cards in the stream
+            const streamCardObserver = new IntersectionObserver((entries) => {
+                if (isUserScrollingProgrammatically || !activeProjectId) return;
+
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+                        const id = entry.target.getAttribute('data-project-id');
+                        if (id && id !== activeProjectId) {
+                            updateActiveProjectIndicator(id, false);
+                        }
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '-10% 0px -50% 0px',
+                threshold: [0.3, 0.6]
+            });
+
+            document.querySelectorAll('.vertical-projects-stream .snackable-card').forEach(card => {
+                streamCardObserver.observe(card);
+            });
+
+            // Grid View button clicks (return to 2-column grid)
+            if (vnavGridBtn) vnavGridBtn.addEventListener('click', () => closeCaseStudy(true));
+            if (mobileStreamGridBtn) mobileStreamGridBtn.addEventListener('click', () => closeCaseStudy(true));
+            if (mobileStreamFloatingBtn) mobileStreamFloatingBtn.addEventListener('click', () => closeCaseStudy(true));
+            if (railExpandBtn) railExpandBtn.addEventListener('click', () => closeCaseStudy(true));
+            // Keyboard accessibility (Esc to close, Arrow keys for prev/next)
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (activeProjectId) {
+                        closeCaseStudy(true);
+                    }
+                } else if (activeProjectId && (e.key === 'ArrowLeft' || e.key === 'ArrowUp') && !e.target.matches('input, textarea')) {
+                    navigateAdjacent('prev');
+                } else if (activeProjectId && (e.key === 'ArrowRight' || e.key === 'ArrowDown') && !e.target.matches('input, textarea')) {
+                    navigateAdjacent('next');
+                }
+            });
 
             // Floating "Back to Projects" on mobile when scrolled down past projects section
             if (mobileJumpProjects && projectsSection) {
@@ -2874,7 +2110,7 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                         return;
                     }
                     const rect = projectsSection.getBoundingClientRect();
-                    // If projects section has scrolled above the viewport (e.g. user scrolled past it into Experience, Skills, Education)
+                    // If projects section has scrolled above the viewport (e.g. user scrolled past it)
                     if (rect.bottom < 100 && window.scrollY > 700) {
                         mobileJumpProjects.classList.add('is-visible');
                     } else {
@@ -2918,21 +2154,6 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
 
             window.addEventListener('popstate', handleHashRoute);
             window.addEventListener('hashchange', handleHashRoute);
-
-            // Keyboard accessibility (Esc to close, Arrow keys for prev/next)
-            window.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    if (activeProjectId) {
-                        closeCaseStudy(true);
-                    } else {
-                        closeAllTimelinePopovers();
-                    }
-                } else if (activeProjectId && e.key === 'ArrowLeft' && !e.target.matches('input, textarea')) {
-                    navigateAdjacent('prev');
-                } else if (activeProjectId && e.key === 'ArrowRight' && !e.target.matches('input, textarea')) {
-                    navigateAdjacent('next');
-                }
-            });
 
             // Initial load hash route check
             handleHashRoute();
