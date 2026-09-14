@@ -3,24 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sudhir Mishra</title>
-    <meta name="description" content="Static portfolio website for Sudhir Mishra">
-    <meta property="og:title" content="Sudhir Mishra">
-    <meta property="og:description" content="Static portfolio website for Sudhir Mishra">
+    <title>Sudhir Mishra | Senior Software Engineer</title>
+    <meta name="description" content="Sudhir Mishra - Senior Software Engineer | Security Products, Web Applications & Data Systems">
+    <meta property="og:title" content="Sudhir Mishra | Senior Software Engineer">
+    <meta property="og:description" content="Sudhir Mishra - Senior Software Engineer | Security Products, Web Applications & Data Systems">
     <link rel="icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-canvas: #f8fafc;
-            --surface-card: #ffffff;
-            --text-primary: #0f172a;
-            --text-muted: #64748b;
+            --surface: #ffffff;
+            --surface-hover: #f1f5f9;
             --border-subtle: #e2e8f0;
-            --accent: #2563eb;
-            --accent-subtle: #eff6ff;
-            --accent-border: #bfdbfe;
+            --border-strong: #cbd5e1;
+            --text-main: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --accent: #0284c7;
+            --accent-bg: #f0f9ff;
+            --accent-border: #bae6fd;
+            --accent-text: #0369a1;
+            --featured-bg: #ecfdf5;
+            --featured-border: #a7f3d0;
+            --featured-text: #065f46;
+            --tag-bg: #f1f5f9;
+            --tag-border: #e2e8f0;
+            --tag-text: #334155;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --shadow-subtle: 0 2px 8px -2px rgba(15, 23, 42, 0.04);
+            --shadow-card: 0 4px 16px -3px rgba(15, 23, 42, 0.05);
+        }
+
+        [data-theme="dark"] {
+            --bg-canvas: #090d16;
+            --surface: #111726;
+            --surface-hover: #172033;
+            --border-subtle: #1e293b;
+            --border-strong: #334155;
+            --text-main: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-bg: #0c2340;
+            --accent-border: #1e3a5f;
+            --accent-text: #7dd3fc;
+            --featured-bg: #062b20;
+            --featured-border: #0d5f46;
+            --featured-text: #6ee7b7;
+            --tag-bg: #172033;
+            --tag-border: #23304a;
+            --tag-text: #cbd5e1;
+            --shadow-subtle: 0 2px 8px -2px rgba(0, 0, 0, 0.3);
+            --shadow-card: 0 4px 16px -3px rgba(0, 0, 0, 0.4);
         }
 
         * {
@@ -32,129 +70,1486 @@
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-canvas);
-            color: var(--text-primary);
-            min-height: 100vh;
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Container */
+        .site-shell {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 44px 24px 88px;
+        }
+
+        /* Nav & Controls */
+        .top-navbar {
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 24px;
-            -webkit-font-smoothing: antialiased;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
         }
 
-        .container {
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .portfolio-card {
-            background-color: var(--surface-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            padding: 48px 40px;
-            text-align: center;
-            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
-            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .badge {
+        .position-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 6px 14px;
-            background-color: var(--accent-subtle);
+            background-color: var(--accent-bg);
             border: 1px solid var(--accent-border);
             border-radius: 9999px;
             font-size: 13px;
             font-weight: 600;
-            color: var(--accent);
-            letter-spacing: 0.02em;
-            margin-bottom: 24px;
+            color: var(--accent-text);
+            letter-spacing: -0.01em;
             white-space: nowrap;
         }
 
-        .badge-dot {
-            width: 7px;
-            height: 7px;
+        .status-dot {
+            width: 8px;
+            height: 8px;
             background-color: var(--accent);
             border-radius: 50%;
             display: inline-block;
         }
 
-        .headline {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            color: var(--text-primary);
-            margin-bottom: 16px;
-        }
-
-        .description {
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: var(--text-muted);
-            max-width: 48ch;
-            margin: 0 auto 32px;
-        }
-
-        .actions {
+        .nav-actions {
             display: flex;
-            justify-content: center;
-            gap: 12px;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .contact-link {
+        .theme-toggle-btn {
             display: inline-flex;
             align-items: center;
-            padding: 12px 24px;
-            background-color: var(--text-primary);
-            color: #ffffff;
-            font-size: 14px;
+            gap: 6px;
+            padding: 7px 12px;
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--border-strong);
+            color: var(--text-main);
+            background: var(--surface-hover);
+        }
+
+        .theme-toggle-btn svg {
+            width: 15px;
+            height: 15px;
+            fill: currentColor;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 13px;
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.15s ease;
+        }
+
+        .social-link:hover {
+            color: var(--text-main);
+            border-color: var(--border-strong);
+            background-color: var(--surface-hover);
+        }
+
+        .social-link svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* Hero / Header */
+        .profile-header {
+            margin-bottom: 52px;
+        }
+
+        .profile-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.4rem, 5vw, 3.4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .profile-headline {
+            font-size: 1.2rem;
             font-weight: 600;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background-color 0.2s ease;
+            color: var(--accent);
+            margin-bottom: 18px;
+            letter-spacing: -0.015em;
+        }
+
+        .profile-bio {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 78ch;
+            line-height: 1.68;
+        }
+
+        /* Section Layout */
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+        }
+
+        .section-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* Filter & Search Bar */
+        .project-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .search-and-filters {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.15s ease;
             white-space: nowrap;
         }
 
-        .contact-link:hover {
-            background-color: #1e293b;
+        .filter-btn:hover {
+            background-color: var(--surface-hover);
+            color: var(--text-main);
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        .filter-btn.active {
+            background-color: var(--text-main);
+            border-color: var(--text-main);
+            color: var(--bg-canvas);
+            font-weight: 600;
+        }
+
+        .search-wrapper {
+            position: relative;
+            min-width: 250px;
+            flex-grow: 1;
+            max-width: 360px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 7px 12px 7px 32px;
+            font-size: 13px;
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            color: var(--text-main);
+            outline: none;
+            transition: border-color 0.15s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            fill: var(--text-muted);
+            pointer-events: none;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .project-card:hover {
+            border-color: var(--border-strong);
+            box-shadow: var(--shadow-card);
+        }
+
+        .project-card.hidden {
+            display: none;
+        }
+
+        .card-top-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .project-category-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .featured-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 600;
+            padding: 2px 8px;
+            background: var(--featured-bg);
+            border: 1px solid var(--featured-border);
+            color: var(--featured-text);
+            border-radius: 9999px;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+
+        .project-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.22rem;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .project-summary {
+            font-size: 0.93rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 18px;
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: auto;
+            padding-top: 14px;
+            border-top: 1px dashed var(--border-subtle);
+        }
+
+        .tag-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 3px 8px;
+            background: var(--tag-bg);
+            border: 1px solid var(--tag-border);
+            border-radius: 4px;
+            color: var(--tag-text);
+            white-space: nowrap;
+        }
+
+        /* Architecture Blueprint Preview & Modal */
+        .arch-actions-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .arch-preview-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            background: var(--accent-bg);
+            border: 1px solid var(--accent-border);
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .arch-preview-trigger:hover {
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .arch-trigger-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .arch-icon {
+            width: 16px;
+            height: 16px;
+            fill: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .arch-trigger-title {
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: var(--accent-text);
+        }
+
+        .arch-trigger-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 600;
+            background: var(--surface);
+            border: 1px solid var(--accent-border);
+            padding: 2px 7px;
+            border-radius: 4px;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .arch-flow-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: all 0.15s ease;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .arch-flow-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-bg);
+            transform: translateY(-1px);
+        }
+
+        .live-flow-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 6px #22c55e;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(9, 13, 22, 0.78);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            background: var(--surface);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 1100px;
+            max-height: 92vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            transform: scale(0.96);
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-overlay.open .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky;
+            top: 0;
+            background: var(--surface);
+            z-index: 10;
+        }
+
+        .modal-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .modal-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .modal-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .modal-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--tag-bg);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .modal-btn:hover {
+            color: var(--text-main);
+            border-color: var(--border-strong);
+        }
+
+        .modal-btn-accent {
+            background: var(--accent-bg);
+            border-color: var(--accent-border);
+            color: var(--accent-text);
+        }
+
+        .modal-btn-accent:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            color: var(--text-muted);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.15s ease;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--text-main);
+            background: var(--surface-hover);
+        }
+
+        .modal-close-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .modal-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .modal-diagram-frame {
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: #edf2f7;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+            line-height: 0;
+        }
+
+        .modal-diagram-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .stage-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .stage-explainer-card {
+            background: var(--tag-bg);
+            border: 1px solid var(--tag-border);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .stage-number-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+        }
+
+        .stage-name-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .stage-desc-text {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+        }
+
+        @media (max-width: 900px) {
+            .stage-cards-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
-        @media (max-width: 640px) {
-            .portfolio-card {
-                padding: 36px 24px;
+        @media (max-width: 600px) {
+            .stage-cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-container {
+                max-height: 96vh;
+            }
+            .modal-body {
+                padding: 16px;
+            }
+        }
+
+        /* Adjacent / Secondary Projects */
+        .adjacent-card {
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            margin-top: 24px;
+        }
+
+        .adjacent-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .adjacent-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px 24px;
+        }
+
+        .adjacent-item {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .adjacent-item::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .adjacent-item strong {
+            color: var(--text-main);
+        }
+
+        /* Experience Section */
+        .experience-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .experience-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .experience-card:hover {
+            border-color: var(--border-strong);
+            box-shadow: var(--shadow-card);
+        }
+
+        .exp-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 6px;
+        }
+
+        .company-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .exp-role {
+            font-size: 0.96rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .exp-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.62;
+        }
+
+        /* Education */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .education-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 22px;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .inst-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .degree-name {
+            font-size: 0.94rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* Empty Search State */
+        .empty-results {
+            display: none;
+            text-align: center;
+            padding: 48px 20px;
+            background: var(--surface);
+            border: 1px dashed var(--border-subtle);
+            border-radius: var(--radius-md);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            grid-column: span 2;
+        }
+
+        /* Footer */
+        .site-footer {
+            margin-top: 64px;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .footer-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+            font-weight: 600;
+            transition: color 0.15s ease;
+        }
+
+        .footer-action:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 820px) {
+            .site-shell {
+                padding: 28px 18px 60px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .adjacent-list {
+                grid-template-columns: 1fr;
+            }
+
+            .search-wrapper {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .empty-results {
+                grid-column: span 1;
             }
         }
     </style>
 </head>
 <body id="page-body">
-    <main class="container" id="main-container">
-        <article class="portfolio-card" id="portfolio-card">
-            <div class="badge" id="status-badge">
-                <span class="badge-dot" id="badge-dot"></span>
-                <span>Static Portfolio</span>
+    <div class="site-shell" id="site-shell">
+        
+        <!-- Top Navbar -->
+        <nav class="top-navbar" id="top-nav" aria-label="Main Navigation">
+            <div class="position-badge" id="position-badge">
+                <span class="status-dot" id="status-dot"></span>
+                <span>Security Products · Web Applications · Data Systems</span>
             </div>
-            <h1 class="headline" id="main-headline">Hello, World!</h1>
-            <p class="description" id="portfolio-desc">
-                Welcome to Sudhir Mishra's static portfolio website. Fast, lightweight, and completely serverless.
+
+            <div class="nav-actions" id="nav-actions">
+                <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle light and dark mode">
+                    <svg id="theme-icon-moon" viewBox="0 0 24 24" style="display: none;"><path d="M12.3 2a10 10 0 0 0-.19 20 10 10 0 0 0 8.35-4.52 1 1 0 0 0-.82-1.52A8 8 0 0 1 12.3 4a7.92 7.92 0 0 1 1.48.14 1 1 0 0 0 1.13-1.25A10.1 10.1 0 0 0 12.3 2z"/></svg>
+                    <svg id="theme-icon-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1zm0 18a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1zm10-9h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM4 12a1 1 0 0 0-1-1H1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm14.07-6.07a1 1 0 0 0-1.41 0l-1.42 1.41a1 1 0 1 0 1.41 1.42l1.42-1.42a1 1 0 0 0 0-1.41zM6.76 17.24a1 1 0 0 0-1.42 0l-1.41 1.42a1 1 0 1 0 1.41 1.41l1.42-1.41a1 1 0 0 0 0-1.42zm11.31 1.42l-1.42-1.42a1 1 0 0 0-1.41 1.42l1.42 1.41a1 1 0 0 0 1.41-1.41zM7.17 6.76L5.76 5.34a1 1 0 1 0-1.41 1.42l1.41 1.41a1 1 0 0 0 1.41-1.41z"/></svg>
+                    <span id="theme-text">Dark Mode</span>
+                </button>
+                <a href="mailto:sudhirxps@gmail.com" class="social-link" id="nav-email">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <span>Email</span>
+                </a>
+                <a href="https://github.com/sudhirmishra" target="_blank" rel="noopener noreferrer" class="social-link" id="nav-github">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://linkedin.com/in/mishrasudhir" target="_blank" rel="noopener noreferrer" class="social-link" id="nav-linkedin">
+                    <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 1 0 1.64 1.64 1.64 1.64 0 0 0-1.64-1.64z"/></svg>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Header / Hero Section -->
+        <header class="profile-header" id="profile-header">
+            <h1 class="profile-name" id="profile-name">Sudhir Mishra</h1>
+            <p class="profile-headline" id="profile-headline">Senior Software Engineer | Security Products, Web Applications &amp; Data Systems</p>
+            <p class="profile-bio" id="profile-bio">
+                Software engineer experienced in building production security products, high-throughput cloud data platforms, and performant web applications. Work spans multi-engine email threat defense platforms, regulated search infrastructure (FedRAMP/OpenSearch), dbt and Redshift analytics pipelines, anomaly detection, and open-source developer tooling.
             </p>
-            <div class="actions" id="action-links">
-                <a href="mailto:sudhirxps@gmail.com" class="contact-link" id="contact-button">Get in touch</a>
+        </header>
+
+        <!-- Experience Section -->
+        <section class="section" id="experience-section">
+            <div class="section-header" id="exp-header">
+                <h2 class="section-title" id="exp-title">Experience</h2>
+                <span class="section-subtitle" id="exp-subtitle">Engineering roles &amp; core scope</span>
             </div>
-        </article>
-    </main>
+
+            <div class="experience-stack" id="experience-stack">
+                <article class="experience-card" id="exp-cisco">
+                    <div class="exp-header">
+                        <h3 class="company-name" id="cisco-company">Cisco</h3>
+                    </div>
+                    <div class="exp-role" id="cisco-role">Data Platform / Cloud Infrastructure / Security Engineering</div>
+                    <p class="exp-desc" id="cisco-desc">
+                        Worked on production data platforms, OpenSearch infrastructure, AWS/Terraform systems, dbt/Redshift analytics, and secure backend services.
+                    </p>
+                </article>
+
+                <article class="experience-card" id="exp-tatvic">
+                    <div class="exp-header">
+                        <h3 class="company-name" id="tatvic-company">Tatvic</h3>
+                    </div>
+                    <div class="exp-role" id="tatvic-role">Technical Analyst</div>
+                    <p class="exp-desc" id="tatvic-desc">
+                        Worked on e-commerce analytics products, Google Analytics / GTM integrations, anomaly detection, Android uninstall tracking, and data pipelines.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section" id="projects-section">
+            <div class="section-header" id="proj-header">
+                <h2 class="section-title" id="proj-title">Projects</h2>
+                <span class="section-subtitle" id="proj-subtitle">Core systems, products, and infrastructure</span>
+            </div>
+
+            <div class="project-controls" id="project-controls">
+                <div class="search-and-filters" id="search-and-filters">
+                    <div class="filter-tabs" id="filter-tabs" role="tablist" aria-label="Filter projects">
+                        <button class="filter-btn active" data-filter="featured" id="btn-filter-featured" role="tab" aria-selected="true">Featured (7)</button>
+                        <button class="filter-btn" data-filter="all" id="btn-filter-all" role="tab" aria-selected="false">All Projects (12)</button>
+                        <button class="filter-btn" data-filter="security" id="btn-filter-security" role="tab" aria-selected="false">Security Products</button>
+                        <button class="filter-btn" data-filter="data" id="btn-filter-data" role="tab" aria-selected="false">Data &amp; Cloud</button>
+                        <button class="filter-btn" data-filter="web" id="btn-filter-web" role="tab" aria-selected="false">Web &amp; Tooling</button>
+                    </div>
+
+                    <div class="search-wrapper" id="search-wrapper">
+                        <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                        <input type="search" class="search-input" id="project-search" placeholder="Search projects, technologies..." aria-label="Search projects">
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects-grid" id="projects-grid">
+                
+                <!-- Project 1: Email Threat Protection Platform (Featured) -->
+                <article class="project-card" data-category="security" data-featured="true" data-keywords="email threat defense appliance stix taxii bitdefender talos vade secure oidc lucene berkeleydb sql scanning remediation" id="proj-email-threat">
+                    <div>
+                        <div class="card-top-meta">
+                            <span class="project-category-tag">Security Products</span>
+                            <span class="featured-badge">Featured</span>
+                        </div>
+                        <h3 class="project-name">Email Threat Protection Platform</h3>
+                        <p class="project-summary">
+                            Built and extended a production email-security platform that combined multiple threat-scanning engines and intelligence sources to detect malicious URLs, attachments, and content. Delivered scanning, remediation, reporting, search, and administrator-facing configuration capabilities across web and command-line interfaces, while improving the extensibility and maintainability of the underlying scanning framework.
+                        </p>
+
+                        <!-- Architecture Blueprint & Live Flow Triggers -->
+                        <div class="arch-actions-row">
+                            <button type="button" class="arch-preview-trigger" id="open-arch-modal-btn" aria-haspopup="dialog" aria-controls="arch-modal">
+                                <div class="arch-trigger-left">
+                                    <svg class="arch-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-4h4v4zm0-6H7V7h4v4zm6 6h-4v-4h4v4zm0-6h-4V7h4v4z"/></svg>
+                                    <span class="arch-trigger-title">Architecture: Extensible Multi-Engine Pipeline</span>
+                                </div>
+                                <span class="arch-trigger-badge">Diagram</span>
+                            </button>
+                            <a href="/architecture.html" class="arch-flow-link" title="Open animated mail flow sub-page">
+                                <span class="live-flow-dot"></span>
+                                <span>Live Flow Loop &rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag-pill">Scanning Engines</span>
+                        <span class="tag-pill">Bitdefender / Talos</span>
+                        <span class="tag-pill">STIX/TAXII Feeds</span>
+                        <span class="tag-pill">Remediation Workflows</span>
+                        <span class="tag-pill">OIDC Auth</span>
+                    </div>
+                </article>
+
+                <!-- Project 2: Outlook Security Add-in (Featured) -->
+                <article class="project-card" data-category="security web" data-featured="true" data-keywords="outlook security add-in mailbox scanning prototype mr post office js web addin" id="proj-outlook-addin">
+                    <div>
+                        <div class="card-top-meta">
+                            <span class="project-category-tag">Security &amp; Web</span>
+                            <span class="featured-badge">Featured</span>
+                        </div>
+                        <h3 class="project-name">Outlook Security Add-in</h3>
+                        <p class="project-summary">
+                            Built an Outlook add-in that brought email scanning and remediation capabilities into the user’s mailbox workflow. Delivered a cross-platform prototype quickly and took it through a first usable version with integrated security actions, connecting the Outlook experience to the email-security platform.
+                        </p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag-pill">Outlook Add-in</span>
+                        <span class="tag-pill">Office JS</span>
+                        <span class="tag-pill">Mailbox Workflow</span>
+                        <span class="tag-pill">Security Actions</span>
+                        <span class="tag-pill">Platform Integration</span>
+                    </div>
+                </article>
+
+                <!-- Project 3: Email Filtering Engine Modernization -->
+                <article class="project-card" data-category="security" data-featured="false" data-keywords="email filtering engine modernization caching compatibility adapters regression testing unit tests content filtering" id="proj-filtering-engine">
+                    <div>
+                        <div class="card-top-meta">
+                            <span class="project-category-tag">Security Products</span>
+                        </div>
+                        <h3 class="project-name">Email Filtering Engine Modernization</h3>
+                        <p class="project-summary">
+                            Modernized a legacy email-content filtering engine by adding caching and compatibility adapters, improving performance while preserving behavior across existing integrations. Strengthened the change with regression-focused unit tests and clearer abstractions for future scanning features.
+                        </p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag-pill">Engine Modernization</span>
+                        <span class="tag-pill">Caching Layer</span>
+                        <span class="tag-pill">Compatibility Adapters</span>
+                        <span class="tag-pill">Regression Tests</span>
+                        <span class="tag-pill">Performance</span>
+                    </div>
+                </article>
+
+                <!-- Project 4: Threat Intelligence Feeds, Search, and Reporting -->
+                <article class="project-card" data-category="security data" data-featured="false" data-keywords="threat intelligence stix taxii search reporting tagging indexing detection rules security admin" id="proj-threat-intel">
+                    <div>
+                        <div class="card-top-meta">
+                            <span class="project-category-tag">Security &amp; Data</span>
+                        </div>
+                        <h3 class="project-name">Threat Intelligence Feeds, Search, and Reporting</h3>
+                        <p class="project-summary">
+                            Integrated external and private threat-intelligence feeds into the email-security product, including STIX/TAXII-based content. Extended configuration, indexing, search, tagging, and reporting so security administrators could investigate processed messages and manage feed-backed detection rules more effectively.
+                        </p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag-pill">STIX / TAXII</span>
+                        <span class="tag-pill">Threat Feeds</span>
+                        <span class="tag-pill">Search &amp; Tagging</span>
+                        <span class="tag-pill">Message Indexing</span>
+                        <span class="tag-pill">Rule Management</span>
+                    </div>
+                </article>
+
+                <!-- Project 5: Email Remediation and Notification Workflows -->
+                <article class="project-card" data-category="security" data-featured="false" data-keywords="email remediation service pull notifications automated remediation post delivery risk classification cli" id="proj-remediation-workflows">
+                    <div>
+                        <div class="card-top-meta">
+                            <span class="project-category-tag">Security Products</span>
+                        </div>
+                        <h3 class="project-name">Email Remediation &amp; Notification Workflows</h3>
+                        <p class="project-summary">
+                            Designed service and user-interface components for post-delivery email remediation and notification workflows. Connected business logic, APIs, graphical interfaces, and command-line controls to let administrators act on messages whose risk classification changed later in the scanning pipeline.
+                        </p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag-pill">Post-Delivery Remediation</span>
+                        <span class="tag-pill">Pull Notifications</span>
+                        <span class="tag-pill">Web UI &amp; CLI</span>
+                        <span class="tag-pill">API Integration</span>
+                    </div>
+                </article>
+
+                <!-- Project 6: WooCommerce Analytics Plugin (Featured) -->
+                <article class="project-card" data-category="web" data-featured="true" data-keywords="woocommerce analytics plugin enhanced ecommerce wordpress extension google analytics open source data layer" id="proj-woocommerce-plugin">
+                    <div>
+                        <div class="card-top-meta">
+                            <span class="project-category-tag">Web Applications</span>
+                            <span class="featured-badge">Featured</span>
+                        </div>
+                        <h3 class="project-name">WooCommerce Analytics Plugin</h3>
+                        <p class="project-summary">
+                            Designed, developed, and supported an open-source WooCommerce analytics plugin that simplified Google Analytics and e-commerce data-layer implementation across WordPress and WooCommerce versions. Worked through community support and release-quality processes, and brought the plugin into the Google Analytics tools ecosystem.
+                        </p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag-pill">WooCommerce</span>
+                        <span class="tag-pill">WordPress</span>
+                        <span class="tag-pill">Google Analytics</span>
+                        <span class="tag-pill">Data Layer</span>
+                        <span class="tag-pill">Open Source</span>
+                    </div>
+                </article>
+
+                <!-- Project 7: Google Analytics Anomaly Detection and Alerting (Featured) -->
+                <article class="project-card" data-category="data" data-featured="true" data-keywords="google analytics anomaly detection alerting time series python r pandas mongodb mysql mandrill clickstream" id="proj-ga-anomaly">
+                    <div>
+                        <div class="card-top-meta">
+                            <span class="project-category-tag">Data Systems</span>
+                            <span class="featured-badge">Featured</span>
+                        </div>
+                        <h3 class="project-name">Google Analytics Anomaly Detection &amp; Alerting</h3>
+                        <p class="project-summary">
+                            Built an analytics pipeline that extracted Google Analytics data, transformed it into an analysis-ready store, and applied time-series anomaly detection to identify unusual clickstream and business behavior. Added orchestration and stakeholder alerting so business teams could act on anomalous events instead of reviewing raw analytics manually.
+                        </p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag-pill">Time-Series Analysis</span>
+                        <span class="tag-pill">Python &amp; R</span>
+                        <span class="tag-pill">GA REST API</span>
+                        <span class="tag-pill">pandas / Multi-Core</span>
+                        <span class="tag-pill">Automated Alerts</span>
+                    </div>
+                </article>
+
+                <!-- Project 8: Mobile Pixel Tracking and Churn/Uninstall Analytics (Featured) -->
+                <article class="project-card" data-category="data" data-featured="true" data-keywords="mobile pixel tracking churn uninstall analytics android sdk cloudfront s3 python parsing relational storage paytm" id="proj-mobile-tracking">
+                    <div>
+                        <div class="card-top-meta">
+                            <span class="project-category-tag">Data Systems</span>
+                            <span class="featured-badge">Featured</span>
+                        </div>
+                        <h3 class="project-name">Mobile Pixel Tracking &amp; Churn/Uninstall Analytics</h3>
+                        <p class="project-summary">
+                            Developed mobile tracking and data-ingestion components to capture user engagement and support churn or uninstall analysis. Built an Android/pixel-tracking SDK and supporting cloud-log pipeline, including CloudFront/S3 log collection, Python parsing, and relational storage for downstream retention analysis and targeted interventions.
+                        </p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag-pill">Android SDK</span>
+                        <span class="tag-pill">CloudFront Logs</span>
+                        <span class="tag-pill">Amazon S3</span>
+                        <span class="tag-pill">Python Ingestion</span>
+                        <span class="tag-pill">Churn Modeling</span>
+                    </div>
+                </article>
+
+                <!-- Project 9: Cloud Analytics and Security Data Systems (Featured) -->
+                <article class="project-card" data-category="data" data-featured="true" data-keywords="cloud analytics security data systems redshift dbt aws batch eventbridge firehose sqs lambda dynamodb rds xdr securex" id="proj-cloud-analytics-security">
+                    <div>
+                        <div class="card-top-meta">
+                            <span class="project-category-tag">Data &amp; Cloud</span>
+                            <span class="featured-badge">Featured</span>
+                        </div>
+                        <h3 class="project-name">Cloud Analytics &amp; Security Data Systems</h3>
+                        <p class="project-summary">
+                            Architected cloud-native data pipelines for security and product analytics, moving data from sources such as S3, DynamoDB, and RDS into Redshift for governed reporting and analysis. Used AWS services and dbt to orchestrate ingestion, transformation, scheduled exports, and reusable analytics outputs for security, product, and customer-engagement workflows.
+                        </p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag-pill">dbt</span>
+                        <span class="tag-pill">Amazon Redshift</span>
+                        <span class="tag-pill">AWS Batch &amp; EventBridge</span>
+                        <span class="tag-pill">Firehose / SQS / Lambda</span>
+                        <span class="tag-pill">XDR / SecureX</span>
+                    </div>
+                </article>
+
+                <!-- Project 10: OpenSearch Migration and FedRAMP/GovCloud Connectivity (Featured) -->
+                <article class="project-card" data-category="data security" data-featured="true" data-keywords="opensearch migration fedramp govcloud connectivity elasticsearch private dns private ca certificates terraform dual write" id="proj-opensearch-fedramp">
+                    <div>
+                        <div class="card-top-meta">
+                            <span class="project-category-tag">Cloud &amp; Security</span>
+                            <span class="featured-badge">Featured</span>
+                        </div>
+                        <h3 class="project-name">OpenSearch Migration &amp; FedRAMP/GovCloud Connectivity</h3>
+                        <p class="project-summary">
+                            Led production search-platform modernization from Elasticsearch to OpenSearch while addressing regulated-environment requirements and operational continuity. Hardened connectivity through private DNS, private CA certificates, feature-flagged private endpoints, and infrastructure-layer ownership for snapshot and recovery automation.
+                        </p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag-pill">OpenSearch</span>
+                        <span class="tag-pill">Elasticsearch Migration</span>
+                        <span class="tag-pill">AWS GovCloud / FedRAMP</span>
+                        <span class="tag-pill">Private DNS &amp; CA</span>
+                        <span class="tag-pill">Terraform</span>
+                    </div>
+                </article>
+
+                <!-- Project 11: Centralized Authentication and Authorization for Data Platforms -->
+                <article class="project-card" data-category="security data" data-featured="false" data-keywords="centralized authentication authorization data platforms iam based access redshift rds opensearch least privilege credential hardening" id="proj-centralized-auth">
+                    <div>
+                        <div class="card-top-meta">
+                            <span class="project-category-tag">Security &amp; Data</span>
+                        </div>
+                        <h3 class="project-name">Centralized Auth &amp; Authorization for Data Platforms</h3>
+                        <p class="project-summary">
+                            Improved access governance across Redshift, RDS, and OpenSearch by moving data-platform access toward centralized authentication and IAM-based authorization. Reduced reliance on hardcoded credentials, clarified administrative ownership, and aligned service access with least-privilege and auditability goals.
+                        </p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag-pill">AWS IAM</span>
+                        <span class="tag-pill">Redshift Access Governance</span>
+                        <span class="tag-pill">RDS Central Auth</span>
+                        <span class="tag-pill">Least-Privilege</span>
+                        <span class="tag-pill">Credential Hardening</span>
+                    </div>
+                </article>
+
+                <!-- Project 12: Product Hunt YouTube-Movie Curation Project -->
+                <article class="project-card" data-category="web" data-featured="false" data-keywords="product hunt youtube movie curation timeline hunt api experiment leaderboard timelinejs" id="proj-product-hunt-movies">
+                    <div>
+                        <div class="card-top-meta">
+                            <span class="project-category-tag">Web Applications</span>
+                        </div>
+                        <h3 class="project-name">Product Hunt YouTube-Movie Curation Project</h3>
+                        <p class="project-summary">
+                            Created a hobby project that curated YouTube movies and exposed them through a lightweight web experience using public APIs. The project was featured on Product Hunt and placed on its leaderboard, demonstrating independent product development, API integration, and launch execution.
+                        </p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag-pill">Product Hunt API</span>
+                        <span class="tag-pill">TimelineJS</span>
+                        <span class="tag-pill">Public APIs</span>
+                        <span class="tag-pill">Product Launch</span>
+                        <span class="tag-pill">Leaderboard</span>
+                    </div>
+                </article>
+
+                <div class="empty-results" id="empty-search-message">
+                    No matching projects found. Try adjusting your keyword or filter criteria.
+                </div>
+            </div>
+
+            <!-- Adjacent / Secondary Projects Card -->
+            <div class="adjacent-card" id="adjacent-projects-card">
+                <h3 class="adjacent-title" id="adjacent-heading">
+                    <span>Secondary &amp; Adjacent Initiatives</span>
+                </h3>
+                <ul class="adjacent-list" id="adjacent-list">
+                    <li class="adjacent-item">
+                        <strong>360-Degree Customer View:</strong> Integrated data across multiple enterprise silos to provide a unified customer view for analytics teams.
+                    </li>
+                    <li class="adjacent-item">
+                        <strong>Lead-Generation &amp; Repeat-Visit Alerting:</strong> Combined CRM data with web-analytics behaviors to flag high-intent leads for business analysts.
+                    </li>
+                    <li class="adjacent-item">
+                        <strong>Dynamic Pricing &amp; Elasticity Analysis:</strong> Applied e-commerce pricing models to support real-time price elasticity evaluation and optimization.
+                    </li>
+                    <li class="adjacent-item">
+                        <strong>edx-dl Extension for BITS Pilani:</strong> Extended the open-source downloader to support offline course material downloads from the BITS Pilani MOOC portal.
+                    </li>
+                    <li class="adjacent-item">
+                        <strong>Data-Platform Security Remediation:</strong> Hardened database access, resolved security audit findings, and completed IAM credential adoption across cloud platforms.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section" id="education-section">
+            <div class="section-header" id="edu-header">
+                <h2 class="section-title" id="edu-title">Education</h2>
+                <span class="section-subtitle" id="edu-subtitle">Academic degrees</span>
+            </div>
+
+            <div class="education-grid" id="education-grid">
+                <div class="education-card" id="edu-bits">
+                    <h3 class="inst-name" id="bits-inst">BITS Pilani</h3>
+                    <div class="degree-name" id="bits-degree">M.E. Software Systems</div>
+                </div>
+
+                <div class="education-card" id="edu-ddu">
+                    <h3 class="inst-name" id="ddu-inst">Dharmsinh Desai University, Nadiad</h3>
+                    <div class="degree-name" id="ddu-degree">B.Tech Information Technology</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer" id="site-footer">
+            <div id="footer-author">Sudhir Mishra · Portfolio</div>
+            <a href="mailto:sudhirxps@gmail.com" class="footer-action" id="footer-contact-link">
+                <span>sudhirxps@gmail.com</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-7.85-1.42 1.42 5.43 5.43H5v2z"/></svg>
+            </a>
+        </footer>
+
+    </div>
+
+    <!-- Client-side Logic: Dark Mode + Interactive Filtering -->
+    <script>
+        (function() {
+            // Theme Management
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeText = document.getElementById('theme-text');
+            const iconSun = document.getElementById('theme-icon-sun');
+            const iconMoon = document.getElementById('theme-icon-moon');
+            const htmlElement = document.documentElement;
+
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    htmlElement.setAttribute('data-theme', 'dark');
+                    iconSun.style.display = 'inline-block';
+                    iconMoon.style.display = 'none';
+                    themeText.textContent = 'Light Mode';
+                } else {
+                    htmlElement.removeAttribute('data-theme');
+                    iconSun.style.display = 'none';
+                    iconMoon.style.display = 'inline-block';
+                    themeText.textContent = 'Dark Mode';
+                }
+            }
+
+            // Detect preferred or stored theme
+            const storedTheme = localStorage.getItem('portfolio-theme');
+            const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (storedTheme) {
+                applyTheme(storedTheme);
+            } else if (systemPrefersDark) {
+                applyTheme('dark');
+            } else {
+                applyTheme('light');
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+                const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                localStorage.setItem('portfolio-theme', nextTheme);
+                applyTheme(nextTheme);
+            });
+
+            // Project Filtering and Search
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const searchInput = document.getElementById('project-search');
+            const projectCards = document.querySelectorAll('.project-card');
+            const emptyMessage = document.getElementById('empty-search-message');
+
+            let currentFilter = 'featured';
+            let currentSearch = '';
+
+            function updateProjectVisibility() {
+                let visibleCount = 0;
+                const searchLower = currentSearch.toLowerCase().trim();
+
+                projectCards.forEach(card => {
+                    const category = card.getAttribute('data-category') || '';
+                    const isFeatured = card.getAttribute('data-featured') === 'true';
+                    const keywords = card.getAttribute('data-keywords') || '';
+                    const text = (card.innerText || '').toLowerCase();
+
+                    // Category filter logic
+                    let matchesCategory = false;
+                    if (currentFilter === 'featured') {
+                        matchesCategory = isFeatured;
+                    } else if (currentFilter === 'all') {
+                        matchesCategory = true;
+                    } else {
+                        matchesCategory = category.split(' ').includes(currentFilter);
+                    }
+
+                    // Search filter logic
+                    const matchesSearch = !searchLower || text.includes(searchLower) || keywords.toLowerCase().includes(searchLower);
+
+                    if (matchesCategory && matchesSearch) {
+                        card.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                if (visibleCount === 0) {
+                    emptyMessage.style.display = 'block';
+                } else {
+                    emptyMessage.style.display = 'none';
+                }
+            }
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => {
+                        b.classList.remove('active');
+                        b.setAttribute('aria-selected', 'false');
+                    });
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-selected', 'true');
+                    currentFilter = btn.getAttribute('data-filter');
+                    updateProjectVisibility();
+                });
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value;
+                updateProjectVisibility();
+            });
+
+            // Initial view: Featured list
+            updateProjectVisibility();
+
+            // Architecture Modal Logic
+            const openModalBtn = document.getElementById('open-arch-modal-btn');
+            const closeModalBtn = document.getElementById('close-arch-modal-btn');
+            const archModal = document.getElementById('arch-modal');
+
+            function openArchModal() {
+                if (archModal) {
+                    archModal.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            function closeArchModal() {
+                if (archModal) {
+                    archModal.classList.remove('open');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            if (openModalBtn) {
+                openModalBtn.addEventListener('click', openArchModal);
+            }
+
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeArchModal);
+            }
+
+            if (archModal) {
+                archModal.addEventListener('click', (e) => {
+                    if (e.target === archModal) {
+                        closeArchModal();
+                    }
+                });
+            }
+
+            // Keyboard accessibility (Esc to close)
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && archModal && archModal.classList.contains('open')) {
+                    closeArchModal();
+                }
+            });
+        })();
+    </script>
+
+    <!-- Architecture Blueprint Modal -->
+    <div class="modal-overlay" id="arch-modal" role="dialog" aria-modal="true" aria-labelledby="arch-modal-title">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <h3 class="modal-title" id="arch-modal-title">Architecture of an Extensible Production Email-Security Platform</h3>
+                    <span class="modal-subtitle">Intake, multi-engine threat detection, automated remediation, and extensible management planes</span>
+                </div>
+                <div class="modal-header-actions">
+                    <a href="/architecture.html" class="modal-btn modal-btn-accent" title="Open visual animated mail flow sub-page">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        <span>Live Mail Flow Loop</span>
+                    </a>
+                    <a href="/email-security-architecture.svg" target="_blank" rel="noopener noreferrer" class="modal-btn" title="Open standalone vector SVG in new tab">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        <span>Raw SVG</span>
+                    </a>
+                    <button type="button" class="modal-close-btn" id="close-arch-modal-btn" aria-label="Close architecture modal">
+                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-diagram-frame">
+                    <img src="/email-security-architecture.svg" alt="Architecture of an Extensible Production Email-Security Platform" class="modal-diagram-img" referrerPolicy="no-referrer">
+                </div>
+
+                <div class="stage-cards-grid">
+                    <div class="stage-explainer-card">
+                        <span class="stage-number-tag">STAGE 1</span>
+                        <h4 class="stage-name-text">Intake &amp; Pre-Processing</h4>
+                        <p class="stage-desc-text">
+                            Messages enter from the Internet via the Security Platform Gateway into a resilient Parser &amp; Queue, dissecting messages into RFC 822 headers, HTML/plain-text bodies, and binary attachments.
+                        </p>
+                    </div>
+
+                    <div class="stage-explainer-card">
+                        <span class="stage-number-tag">STAGE 2</span>
+                        <h4 class="stage-name-text">Multi-Engine Threat Analysis</h4>
+                        <p class="stage-desc-text">
+                            Parallel evaluation through pluggable engines: URL emulation &amp; threat feeds, attachment detonation (Talos/Bitdefender sandboxing), and header/content heuristics (Vade Secure, DMARC/SPF), scored by the Threat Decision Engine.
+                        </p>
+                    </div>
+
+                    <div class="stage-explainer-card">
+                        <span class="stage-number-tag">STAGE 3</span>
+                        <h4 class="stage-name-text">Remediation &amp; Action</h4>
+                        <p class="stage-desc-text">
+                            Identified threats trigger automated quarantine, blocking, or post-delivery inbox retraction. Verified safe emails are routed to corporate inboxes while all processing telemetry streams to the SQL/BerkeleyDB audit store.
+                        </p>
+                    </div>
+
+                    <div class="stage-explainer-card">
+                        <span class="stage-number-tag">STAGE 4</span>
+                        <h4 class="stage-name-text">Administration &amp; Extensibility</h4>
+                        <p class="stage-desc-text">
+                            Dual administrative interfaces (Web-Based GUI Dashboard and CLI) enable policy orchestration, quarantine inspection, and hot-swappable adapter registration for new scanning engines.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
