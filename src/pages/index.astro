@@ -113,6 +113,11 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             margin: 0 auto;
             padding: 0 40px;
             min-height: 100vh;
+            transition: gap 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .sidebar-pane {
+            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), min-width 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
         }
 
         @media (min-width: 1024px) {
@@ -120,6 +125,10 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                 display: flex;
                 justify-content: space-between;
                 gap: 56px;
+            }
+
+            .site-shell.sidebar-collapsed {
+                gap: 36px;
             }
 
             .sidebar-pane {
@@ -135,6 +144,48 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                 overflow-y: auto;
                 scrollbar-width: thin;
                 scrollbar-color: var(--border-subtle) transparent;
+            }
+
+            .site-shell.sidebar-collapsed .sidebar-pane {
+                width: 72px;
+                min-width: 72px;
+                padding: 36px 0 32px;
+                overflow: hidden;
+            }
+
+            .sidebar-full-content {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+                opacity: 1;
+                transition: opacity 0.2s ease, transform 0.2s ease;
+                transform: translateX(0);
+            }
+
+            .site-shell.sidebar-collapsed .sidebar-full-content {
+                opacity: 0;
+                transform: translateX(-16px);
+                pointer-events: none;
+                display: none;
+            }
+
+            .sidebar-collapsed-rail {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+                width: 100%;
+                opacity: 0;
+                transform: translateX(10px);
+                transition: opacity 0.25s ease 0.1s, transform 0.25s ease 0.1s;
+            }
+
+            .site-shell.sidebar-collapsed .sidebar-collapsed-rail {
+                display: flex;
+                opacity: 1;
+                transform: translateX(0);
             }
 
             .sidebar-pane::-webkit-scrollbar {
@@ -162,6 +213,14 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                 margin-bottom: 40px;
                 padding-bottom: 28px;
                 border-bottom: 1px solid var(--border-subtle);
+            }
+
+            .site-shell.sidebar-collapsed .sidebar-pane {
+                display: none;
+            }
+
+            .sidebar-collapsed-rail {
+                display: none !important;
             }
 
             .main-content-pane {
@@ -1355,6 +1414,540 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                 grid-column: span 1;
             }
         }
+
+        /* Collapsed Rail Controls */
+        .rail-top, .rail-middle, .rail-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .rail-action-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .rail-action-btn:hover {
+            background: var(--accent-bg);
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .rail-action-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .rail-back-btn {
+            background: var(--accent-bg);
+            border-color: var(--accent-border);
+            color: var(--accent);
+        }
+
+        .rail-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0.05em;
+        }
+
+        .rail-icon-link {
+            width: 38px;
+            height: 38px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .rail-icon-link:hover {
+            color: var(--accent);
+            background: var(--surface-hover);
+        }
+
+        .rail-icon-link svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Basic In-Page Animations */
+        @keyframes caseStudyFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes projectsSectionFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes cardSwitch {
+            0% {
+                opacity: 0.3;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .case-study-view.animating-in {
+            animation: caseStudyFadeIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .section.animating-in {
+            animation: projectsSectionFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .case-study-card.animating-switch {
+            animation: cardSwitch 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Case Study In-Page View */
+        .case-study-view {
+            max-width: 820px;
+        }
+
+        .cs-top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--bg);
+            padding: 12px 0;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .cs-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .cs-back-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: var(--accent-bg);
+            transform: translateX(-2px);
+        }
+
+        .cs-back-btn svg {
+            transition: transform 0.15s ease;
+        }
+
+        .cs-back-btn:hover svg {
+            transform: translateX(-2px);
+        }
+
+        .cs-nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cs-meta-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            padding: 5px 12px;
+            border-radius: var(--radius-sm);
+        }
+
+        .cs-quick-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 2px;
+        }
+
+        .cs-quick-btn {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.15s ease;
+        }
+
+        .cs-quick-btn:hover {
+            color: var(--text-main);
+            background: var(--surface-hover);
+        }
+
+        .cs-quick-btn[disabled] {
+            opacity: 0.35;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Case Study Card and Content */
+        .case-study-card {
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            box-shadow: var(--shadow-card);
+            margin-bottom: 28px;
+        }
+
+        .project-heading-block {
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-subtle);
+        }
+
+        .project-meta-pill {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .project-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.85rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.25;
+        }
+
+        .study-section {
+            margin-bottom: 26px;
+        }
+
+        .study-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .section-body {
+            font-size: 0.96rem;
+            color: var(--text-secondary);
+            line-height: 1.68;
+        }
+
+        .approach-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .approach-list li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.96rem;
+            color: var(--text-secondary);
+            line-height: 1.62;
+        }
+
+        .approach-list li::before {
+            content: '–';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .stack-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .stack-pill {
+            display: inline-block;
+            background: var(--tag-bg);
+            border: 1px solid var(--tag-border);
+            color: var(--tag-text);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+        }
+
+        .pagination-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .page-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-main);
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .page-link-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-bg);
+            transform: translateY(-1px);
+        }
+
+        .page-link-btn[disabled] {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .page-link-btn.page-link-back {
+            background: var(--surface-hover);
+            border-color: var(--border-medium);
+        }
+
+        .project-card {
+            cursor: pointer;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        /* Pulse highlight when returning back to a project card from a case study */
+        @keyframes cardReturnPulse {
+            0% {
+                outline: 2px solid var(--accent);
+                box-shadow: 0 0 0 6px var(--accent-bg), var(--shadow-card);
+                border-color: var(--accent);
+                transform: scale(1.02);
+            }
+            40% {
+                outline: 2px solid var(--accent);
+                box-shadow: 0 0 0 8px var(--accent-bg), var(--shadow-card);
+                border-color: var(--accent);
+                transform: scale(1.015);
+            }
+            100% {
+                outline: 2px solid transparent;
+                box-shadow: var(--shadow-card);
+                border-color: var(--border-subtle);
+                transform: scale(1);
+            }
+        }
+
+        .project-card.card-returned-highlight {
+            animation: cardReturnPulse 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            border-color: var(--accent) !important;
+        }
+
+        /* Mobile floating dock for case study view */
+        .mobile-cs-dock {
+            display: none;
+        }
+
+        /* Mobile floating 'Back to Projects' jump button when scrolling main page */
+        .mobile-jump-projects {
+            display: none;
+        }
+
+        @media (max-width: 1023px) {
+            .mobile-cs-dock {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 100;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                background: var(--surface);
+                border: 1px solid var(--border-subtle);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.08);
+                padding: 6px 10px;
+                border-radius: 9999px;
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                animation: floatDockIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            @keyframes floatDockIn {
+                from {
+                    opacity: 0;
+                    transform: translate(-50%, 16px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translate(-50%, 0);
+                }
+            }
+
+            .float-dock-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                background: transparent;
+                border: none;
+                color: var(--text-main);
+                font-family: 'Outfit', sans-serif;
+                font-size: 0.88rem;
+                font-weight: 600;
+                padding: 8px 14px;
+                border-radius: 9999px;
+                cursor: pointer;
+                transition: all 0.15s ease;
+                min-height: 40px;
+            }
+
+            .float-dock-btn.float-dock-back {
+                background: var(--accent-bg);
+                color: var(--accent);
+                border: 1px solid var(--accent);
+            }
+
+            .float-dock-btn:active {
+                transform: scale(0.96);
+            }
+
+            .float-dock-divider {
+                width: 1px;
+                height: 20px;
+                background: var(--border-subtle);
+            }
+
+            .float-dock-arrow {
+                padding: 8px 10px;
+                color: var(--text-muted);
+            }
+
+            .float-dock-arrow[disabled] {
+                opacity: 0.35;
+                pointer-events: none;
+            }
+
+            .mobile-jump-projects {
+                position: fixed;
+                bottom: 24px;
+                right: 20px;
+                z-index: 90;
+                align-items: center;
+                gap: 6px;
+                background: var(--surface);
+                border: 1px solid var(--border-subtle);
+                color: var(--text-main);
+                font-family: 'Outfit', sans-serif;
+                font-size: 0.82rem;
+                font-weight: 600;
+                padding: 10px 16px;
+                border-radius: 9999px;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
+                cursor: pointer;
+                transition: all 0.2s ease;
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                opacity: 0;
+                transform: translateY(12px);
+                pointer-events: none;
+            }
+
+            .mobile-jump-projects.is-visible {
+                display: inline-flex;
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+
+            .mobile-jump-projects:hover {
+                border-color: var(--accent);
+                color: var(--accent);
+                background: var(--accent-bg);
+            }
+        }
     </style>
 </head>
 <body id="page-body">
@@ -1362,7 +1955,8 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
         
         <!-- Left Sticky Sidebar (Profile + Section Sub-Nav) -->
         <aside class="sidebar-pane" id="sidebar-pane" aria-label="Profile and Navigation">
-            <div class="sidebar-top">
+            <div class="sidebar-full-content" id="sidebar-full-content">
+                <div class="sidebar-top">
                 <!-- Profile Header -->
                 <header class="profile-header" id="profile-header">
                     <h1 class="profile-name" id="profile-name">Sudhir Mishra</h1>
@@ -1615,6 +2209,36 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                     </button>
                 </div>
             </div>
+            </div>
+
+            <!-- Collapsed Rail State (When viewing an in-page case study) -->
+            <div class="sidebar-collapsed-rail" id="sidebar-collapsed-rail" aria-hidden="true">
+                <div class="rail-top">
+                    <button type="button" class="rail-action-btn rail-back-btn" id="rail-expand-btn" title="Back to Overview / Expand Profile" aria-label="Back to Overview">
+                        <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                    </button>
+                    <div class="rail-avatar" title="Sudhir Mishra">SM</div>
+                </div>
+
+                <div class="rail-middle">
+                    <a href="mailto:sudhirxps@gmail.com" class="rail-icon-link" title="Send Email" aria-label="Email Sudhir Mishra">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </a>
+                    <a href="https://github.com/sudhirmishra" target="_blank" rel="noopener noreferrer" class="rail-icon-link" title="GitHub Profile" aria-label="GitHub Profile">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                    </a>
+                    <a href="https://linkedin.com/in/mishrasudhir" target="_blank" rel="noopener noreferrer" class="rail-icon-link" title="LinkedIn Profile" aria-label="LinkedIn Profile">
+                        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 1 0 1.64 1.64 1.64 1.64 0 0 0-1.64-1.64z"/></svg>
+                    </a>
+                </div>
+
+                <div class="rail-bottom">
+                    <button type="button" class="rail-action-btn" id="rail-theme-toggle" title="Toggle light and dark mode" aria-label="Toggle theme">
+                        <svg class="rail-icon-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1zm0 18a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1zm10-9h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM4 12a1 1 0 0 0-1-1H1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm14.07-6.07a1 1 0 0 0-1.41 0l-1.42 1.41a1 1 0 1 0 1.41 1.42l1.42-1.42a1 1 0 0 0 0-1.41zM6.76 17.24a1 1 0 0 0-1.42 0l-1.41 1.42a1 1 0 1 0 1.41 1.41l1.42-1.41a1 1 0 0 0 0-1.42zm11.31 1.42l-1.42-1.42a1 1 0 0 0-1.41 1.42l1.42 1.41a1 1 0 0 0 1.41-1.41zM7.17 6.76L5.76 5.34a1 1 0 1 0-1.41 1.42l1.41 1.41a1 1 0 0 0 1.41-1.41z"/></svg>
+                        <svg class="rail-icon-moon" viewBox="0 0 24 24" style="display: none;"><path d="M12.3 2a10 10 0 0 0-.19 20 10 10 0 0 0 8.35-4.52 1 1 0 0 0-.82-1.52A8 8 0 0 1 12.3 4a7.92 7.92 0 0 1 1.48.14 1 1 0 0 0 1.13-1.25A10.1 10.1 0 0 0 12.3 2z"/></svg>
+                    </button>
+                </div>
+            </div>
         </aside>
 
         <!-- Main Content Pane -->
@@ -1652,7 +2276,7 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                             <div>
                                 <div class="card-top-meta">
                                     <span class="project-category-tag">{p.metaPill}</span>
-                                    <span class="featured-badge">Case Study #{p.order}</span>
+                                    <span class="featured-badge">Case Study</span>
                                 </div>
                                 <h3 class="project-name">{p.title}</h3>
                                 <a href={`/project-${p.id}.html`} class="case-study-link" id={`link-study-${p.id}`}>
@@ -1701,6 +2325,94 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                 </div>
             </section>
 
+            <!-- In-Page Case Study View (Dynamic SPA Display) -->
+            <div class="case-study-view" id="case-study-view" style="display: none;" aria-live="polite">
+                <!-- Top Navigation Bar -->
+                <div class="cs-top-bar" id="cs-top-bar">
+                    <button type="button" class="cs-back-btn" id="cs-back-btn" aria-label="Back to Projects Overview">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                        <span>Back to Overview</span>
+                    </button>
+
+                    <div class="cs-nav-right">
+                        <span class="cs-meta-badge" id="cs-top-badge">Case Study</span>
+                        <div class="cs-quick-nav">
+                            <button type="button" class="cs-quick-btn" id="cs-quick-prev" title="Previous Case Study" aria-label="Previous Case Study">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                            </button>
+                            <button type="button" class="cs-quick-btn" id="cs-quick-next" title="Next Case Study" aria-label="Next Case Study">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study Content Card -->
+                <article class="case-study-card" id="cs-card">
+                    <div class="project-heading-block">
+                        <span class="project-meta-pill" id="cs-meta-pill"></span>
+                        <h1 class="project-title" id="cs-title"></h1>
+                    </div>
+
+                    <section class="study-section">
+                        <h4 class="section-label">Challenge</h4>
+                        <p class="section-body" id="cs-challenge"></p>
+                    </section>
+
+                    <section class="study-section">
+                        <h4 class="section-label">Approach</h4>
+                        <ul class="approach-list" id="cs-approach"></ul>
+                    </section>
+
+                    <section class="study-section">
+                        <h4 class="section-label">Outcome</h4>
+                        <p class="section-body" id="cs-outcome"></p>
+                    </section>
+
+                    <section class="study-section">
+                        <h4 class="section-label">Stack</h4>
+                        <div class="stack-tags" id="cs-stack"></div>
+                    </section>
+                </article>
+
+                <!-- Bottom Pagination Navigation -->
+                <nav class="pagination-nav" id="cs-pagination-nav" aria-label="Case study navigation">
+                    <button type="button" class="page-link-btn" id="cs-page-prev">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                        <span id="cs-prev-title">Previous Case Study</span>
+                    </button>
+                    <button type="button" class="page-link-btn page-link-back" id="cs-page-back-btn" aria-label="Back to project card in vertical list">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                        <span>Back to Project</span>
+                    </button>
+                    <button type="button" class="page-link-btn" id="cs-page-next">
+                        <span id="cs-next-title">Next Case Study</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Mobile Floating Dock (Quick Back & Controls during vertical scroll in Case Study) -->
+            <div class="mobile-cs-dock" id="mobile-cs-dock" style="display: none;" aria-label="Mobile case study actions">
+                <button type="button" class="float-dock-btn float-dock-back" id="mobile-dock-back" aria-label="Back to project in vertical list">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                    <span>Back to Project</span>
+                </button>
+                <div class="float-dock-divider"></div>
+                <button type="button" class="float-dock-btn float-dock-arrow" id="mobile-dock-prev" title="Previous case study" aria-label="Previous case study">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                </button>
+                <button type="button" class="float-dock-btn float-dock-arrow" id="mobile-dock-next" title="Next case study" aria-label="Next case study">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </button>
+            </div>
+
+            <!-- Mobile Floating Button to jump back to Projects from deep vertical scroll on main page -->
+            <button type="button" class="mobile-jump-projects" id="mobile-jump-projects" aria-label="Jump back to Projects section">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+                <span>Back to Projects</span>
+            </button>
+
             <!-- Footer -->
             <footer class="site-footer" id="site-footer">
                 <div id="footer-author">Sudhir Mishra · Portfolio</div>
@@ -1713,6 +2425,9 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
         </main>
     </div>
 
+    <!-- Serialized projects data for instant in-page transitions -->
+    <script id="projects-data" type="application/json" set:html={JSON.stringify(projects)} />
+
     <!-- Client-side Scripts -->
     <script is:inline>
         (function() {
@@ -1722,6 +2437,20 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             const iconMoon = document.getElementById('theme-icon-moon');
             const themeText = document.getElementById('theme-text');
             const htmlElement = document.documentElement;
+
+            const railThemeToggleBtn = document.getElementById('rail-theme-toggle');
+            const railIconSun = document.querySelector('.rail-icon-sun');
+            const railIconMoon = document.querySelector('.rail-icon-moon');
+
+            function syncRailThemeIcons(theme) {
+                if (theme === 'dark') {
+                    if (railIconSun) railIconSun.style.display = 'inline-block';
+                    if (railIconMoon) railIconMoon.style.display = 'none';
+                } else {
+                    if (railIconSun) railIconSun.style.display = 'none';
+                    if (railIconMoon) railIconMoon.style.display = 'inline-block';
+                }
+            }
 
             function applyTheme(theme) {
                 if (theme === 'dark') {
@@ -1735,6 +2464,7 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                     if (iconMoon) iconMoon.style.display = 'inline-block';
                     if (themeText) themeText.textContent = 'Dark Mode';
                 }
+                syncRailThemeIcons(theme);
             }
 
             // Detect preferred or stored theme
@@ -1749,14 +2479,20 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                 applyTheme('light');
             }
 
+            function toggleThemeMode() {
+                const currentTheme = htmlElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+                const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                localStorage.setItem('portfolio-theme', nextTheme);
+                localStorage.setItem('portfolio_theme', nextTheme);
+                applyTheme(nextTheme);
+            }
+
             if (themeToggleBtn) {
-                themeToggleBtn.addEventListener('click', () => {
-                    const currentTheme = htmlElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-                    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                    localStorage.setItem('portfolio-theme', nextTheme);
-                    localStorage.setItem('portfolio_theme', nextTheme);
-                    applyTheme(nextTheme);
-                });
+                themeToggleBtn.addEventListener('click', toggleThemeMode);
+            }
+
+            if (railThemeToggleBtn) {
+                railThemeToggleBtn.addEventListener('click', toggleThemeMode);
             }
 
             // Project Filtering and Search
@@ -1910,12 +2646,296 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                 }
             });
 
-            // Keyboard accessibility (Esc to close)
+            // In-Page Case Study Dynamic Navigation & Sidebar Collapse
+            const projectsDataEl = document.getElementById('projects-data');
+            const allProjects = projectsDataEl ? JSON.parse(projectsDataEl.textContent || '[]') : [];
+
+            const siteShell = document.getElementById('site-shell');
+            const projectsSection = document.getElementById('projects-section');
+            const caseStudyView = document.getElementById('case-study-view');
+
+            const csMetaPill = document.getElementById('cs-meta-pill');
+            const csTitle = document.getElementById('cs-title');
+            const csChallenge = document.getElementById('cs-challenge');
+            const csApproach = document.getElementById('cs-approach');
+            const csOutcome = document.getElementById('cs-outcome');
+            const csStack = document.getElementById('cs-stack');
+            const csCard = document.getElementById('cs-card');
+
+            const csBackBtn = document.getElementById('cs-back-btn');
+            const railExpandBtn = document.getElementById('rail-expand-btn');
+            const csQuickPrev = document.getElementById('cs-quick-prev');
+            const csQuickNext = document.getElementById('cs-quick-next');
+            const csPagePrev = document.getElementById('cs-page-prev');
+            const csPageNext = document.getElementById('cs-page-next');
+            const csPageBackBtn = document.getElementById('cs-page-back-btn');
+            const csPrevTitle = document.getElementById('cs-prev-title');
+            const csNextTitle = document.getElementById('cs-next-title');
+
+            const mobileCsDock = document.getElementById('mobile-cs-dock');
+            const mobileDockBack = document.getElementById('mobile-dock-back');
+            const mobileDockPrev = document.getElementById('mobile-dock-prev');
+            const mobileDockNext = document.getElementById('mobile-dock-next');
+            const mobileJumpProjects = document.getElementById('mobile-jump-projects');
+
+            let activeProjectId = null;
+
+            function renderCaseStudy(project, animateCard = true) {
+                if (!project) return;
+                activeProjectId = project.id;
+
+                if (csMetaPill) csMetaPill.textContent = project.metaPill || '';
+                if (csTitle) csTitle.textContent = project.title || '';
+                if (csChallenge) csChallenge.textContent = project.challenge || '';
+
+                if (csApproach) {
+                    csApproach.innerHTML = '';
+                    (project.approach || []).forEach(item => {
+                        const li = document.createElement('li');
+                        li.textContent = item;
+                        csApproach.appendChild(li);
+                    });
+                }
+
+                if (csOutcome) csOutcome.textContent = project.outcome || '';
+
+                if (csStack) {
+                    csStack.innerHTML = '';
+                    (project.stack || []).forEach(tech => {
+                        const span = document.createElement('span');
+                        span.className = 'stack-pill';
+                        span.textContent = tech;
+                        csStack.appendChild(span);
+                    });
+                }
+
+                const idx = allProjects.findIndex(p => p.id === project.id);
+                const prevProj = idx > 0 ? allProjects[idx - 1] : null;
+                const nextProj = idx < allProjects.length - 1 ? allProjects[idx + 1] : null;
+
+                if (csQuickPrev) {
+                    csQuickPrev.disabled = !prevProj;
+                    csQuickPrev.title = prevProj ? `Previous: ${prevProj.title}` : 'No previous case study';
+                }
+                if (csQuickNext) {
+                    csQuickNext.disabled = !nextProj;
+                    csQuickNext.title = nextProj ? `Next: ${nextProj.title}` : 'No next case study';
+                }
+
+                if (mobileDockPrev) {
+                    mobileDockPrev.disabled = !prevProj;
+                    mobileDockPrev.title = prevProj ? `Previous: ${prevProj.title}` : 'No previous case study';
+                }
+                if (mobileDockNext) {
+                    mobileDockNext.disabled = !nextProj;
+                    mobileDockNext.title = nextProj ? `Next: ${nextProj.title}` : 'No next case study';
+                }
+
+                if (csPagePrev) {
+                    if (prevProj) {
+                        csPagePrev.style.display = 'inline-flex';
+                        if (csPrevTitle) csPrevTitle.textContent = `Prev: ${prevProj.title}`;
+                    } else {
+                        csPagePrev.style.display = 'none';
+                    }
+                }
+
+                if (csPageNext) {
+                    if (nextProj) {
+                        csPageNext.style.display = 'inline-flex';
+                        if (csNextTitle) csNextTitle.textContent = `Next: ${nextProj.title}`;
+                    } else {
+                        csPageNext.style.display = 'none';
+                    }
+                }
+
+                document.title = `${project.title} | Case Study | Sudhir Mishra`;
+
+                if (animateCard && csCard) {
+                    csCard.classList.remove('animating-switch');
+                    void csCard.offsetWidth;
+                    csCard.classList.add('animating-switch');
+                }
+            }
+
+            function openCaseStudy(projectId, pushState = true) {
+                const project = allProjects.find(p => p.id === projectId);
+                if (!project) return;
+
+                closeAllTimelinePopovers();
+                renderCaseStudy(project, true);
+
+                if (siteShell) siteShell.classList.add('sidebar-collapsed');
+                if (projectsSection) projectsSection.style.display = 'none';
+
+                if (caseStudyView) {
+                    caseStudyView.style.display = 'block';
+                    caseStudyView.classList.remove('animating-in');
+                    void caseStudyView.offsetWidth;
+                    caseStudyView.classList.add('animating-in');
+                }
+
+                if (mobileCsDock) {
+                    mobileCsDock.style.display = 'flex';
+                }
+                if (mobileJumpProjects) {
+                    mobileJumpProjects.classList.remove('is-visible');
+                }
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                if (pushState) {
+                    history.pushState({ projectId: project.id }, '', `#project-${project.id}`);
+                }
+            }
+
+            function closeCaseStudy(pushState = true) {
+                const targetId = activeProjectId;
+                activeProjectId = null;
+
+                if (siteShell) siteShell.classList.remove('sidebar-collapsed');
+
+                if (caseStudyView) {
+                    caseStudyView.style.display = 'none';
+                }
+
+                if (mobileCsDock) {
+                    mobileCsDock.style.display = 'none';
+                }
+
+                if (projectsSection) {
+                    projectsSection.style.display = 'block';
+                    projectsSection.classList.remove('animating-in');
+                    void projectsSection.offsetWidth;
+                    projectsSection.classList.add('animating-in');
+                }
+
+                // Scroll directly back to the project card in the vertical list!
+                if (targetId) {
+                    const targetCard = document.getElementById(`project-card-${targetId}`);
+                    if (targetCard) {
+                        setTimeout(() => {
+                            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            targetCard.classList.add('card-returned-highlight');
+                            setTimeout(() => {
+                                targetCard.classList.remove('card-returned-highlight');
+                            }, 2200);
+                        }, 60);
+                    }
+                }
+
+                document.title = 'Sudhir Mishra | Senior Software Engineer';
+
+                if (pushState) {
+                    history.pushState({}, '', window.location.pathname + (targetId ? `#project-card-${targetId}` : '#projects-section'));
+                }
+            }
+
+            function navigateAdjacent(direction) {
+                if (!activeProjectId) return;
+                const idx = allProjects.findIndex(p => p.id === activeProjectId);
+                const target = direction === 'prev' ? allProjects[idx - 1] : allProjects[idx + 1];
+                if (target) {
+                    openCaseStudy(target.id, true);
+                }
+            }
+
+            // Click listener for all project cards and links
+            projectCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const cardId = card.id || '';
+                    const id = cardId.replace('project-card-', '');
+                    if (id) {
+                        e.preventDefault();
+                        openCaseStudy(id, true);
+                    }
+                });
+            });
+
+            // Back & Expand Actions
+            if (csBackBtn) csBackBtn.addEventListener('click', () => closeCaseStudy(true));
+            if (railExpandBtn) railExpandBtn.addEventListener('click', () => closeCaseStudy(true));
+            if (csPageBackBtn) csPageBackBtn.addEventListener('click', () => closeCaseStudy(true));
+            if (mobileDockBack) mobileDockBack.addEventListener('click', () => closeCaseStudy(true));
+
+            // Navigation Buttons
+            if (csQuickPrev) csQuickPrev.addEventListener('click', () => navigateAdjacent('prev'));
+            if (csQuickNext) csQuickNext.addEventListener('click', () => navigateAdjacent('next'));
+            if (mobileDockPrev) mobileDockPrev.addEventListener('click', () => navigateAdjacent('prev'));
+            if (mobileDockNext) mobileDockNext.addEventListener('click', () => navigateAdjacent('next'));
+            if (csPagePrev) csPagePrev.addEventListener('click', () => navigateAdjacent('prev'));
+            if (csPageNext) csPageNext.addEventListener('click', () => navigateAdjacent('next'));
+
+            // Floating "Back to Projects" on mobile when scrolled down past projects section
+            if (mobileJumpProjects && projectsSection) {
+                window.addEventListener('scroll', () => {
+                    if (activeProjectId) {
+                        mobileJumpProjects.classList.remove('is-visible');
+                        return;
+                    }
+                    const rect = projectsSection.getBoundingClientRect();
+                    // If projects section has scrolled above the viewport (e.g. user scrolled past it into Experience, Skills, Education)
+                    if (rect.bottom < 100 && window.scrollY > 700) {
+                        mobileJumpProjects.classList.add('is-visible');
+                    } else {
+                        mobileJumpProjects.classList.remove('is-visible');
+                    }
+                }, { passive: true });
+
+                mobileJumpProjects.addEventListener('click', () => {
+                    projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+
+            // URL Hash & History handling
+            function handleHashRoute() {
+                const hash = window.location.hash || '';
+                if (hash.startsWith('#project-card-')) {
+                    const id = hash.replace('#project-card-', '');
+                    const targetCard = document.getElementById(`project-card-${id}`);
+                    if (targetCard) {
+                        setTimeout(() => {
+                            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            targetCard.classList.add('card-returned-highlight');
+                            setTimeout(() => {
+                                targetCard.classList.remove('card-returned-highlight');
+                            }, 2000);
+                        }, 100);
+                        return;
+                    }
+                }
+                if (hash.startsWith('#project-')) {
+                    const id = hash.replace('#project-', '');
+                    if (allProjects.some(p => p.id === id)) {
+                        openCaseStudy(id, false);
+                        return;
+                    }
+                }
+                if (activeProjectId) {
+                    closeCaseStudy(false);
+                }
+            }
+
+            window.addEventListener('popstate', handleHashRoute);
+            window.addEventListener('hashchange', handleHashRoute);
+
+            // Keyboard accessibility (Esc to close, Arrow keys for prev/next)
             window.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
-                    closeAllTimelinePopovers();
+                    if (activeProjectId) {
+                        closeCaseStudy(true);
+                    } else {
+                        closeAllTimelinePopovers();
+                    }
+                } else if (activeProjectId && e.key === 'ArrowLeft' && !e.target.matches('input, textarea')) {
+                    navigateAdjacent('prev');
+                } else if (activeProjectId && e.key === 'ArrowRight' && !e.target.matches('input, textarea')) {
+                    navigateAdjacent('next');
                 }
             });
+
+            // Initial load hash route check
+            handleHashRoute();
         })();
     </script>
 </body>
