@@ -226,6 +226,113 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             .main-content-pane {
                 width: 100%;
             }
+
+            /* Mobile Career Timeline Badges: Saves ~75% height by replacing stacked lists */
+            .desktop-exp-edu {
+                display: none !important;
+            }
+
+            .mobile-career-history {
+                display: flex !important;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .career-timeline-chips {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 6px 8px;
+            }
+
+            .career-chip {
+                display: inline-flex;
+                align-items: baseline;
+                gap: 6px;
+                background: var(--tag-bg);
+                border: 1px solid var(--border-subtle);
+                border-radius: var(--radius-sm);
+                padding: 5px 10px;
+                font-family: 'Outfit', sans-serif;
+                font-size: 0.8rem;
+                color: var(--text-main);
+                line-height: 1.35;
+                white-space: nowrap;
+                transition: border-color 0.15s ease, background-color 0.15s ease;
+            }
+
+            .career-chip:hover {
+                border-color: var(--border-medium);
+                background: var(--surface-hover);
+            }
+
+            .career-chip-name {
+                font-weight: 700;
+                color: var(--text-main);
+                letter-spacing: -0.01em;
+            }
+
+            .career-chip-meta {
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 0.72rem;
+                font-weight: 500;
+                color: var(--text-muted);
+            }
+
+            .career-timeline-bullet {
+                color: var(--text-muted);
+                font-size: 0.75rem;
+                user-select: none;
+                opacity: 0.7;
+            }
+
+            /* Mobile Footer Buttons (Email, GitHub, LinkedIn, Theme): Icon-only logos in a single horizontal row */
+            .sidebar-bottom {
+                margin-top: 16px;
+            }
+
+            .sidebar-divider {
+                margin-bottom: 14px;
+            }
+
+            .sidebar-footer-row {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+                gap: 8px !important;
+                flex-wrap: nowrap !important;
+            }
+
+            .sidebar-socials,
+            .sidebar-actions {
+                display: contents !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .social-link .btn-text,
+            .theme-toggle-btn .btn-text {
+                display: none !important;
+            }
+
+            .social-link,
+            .theme-toggle-btn {
+                padding: 0 !important;
+                width: 38px;
+                height: 38px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: var(--radius-sm);
+                flex-shrink: 0;
+            }
+
+            .social-link svg,
+            .theme-toggle-btn svg {
+                width: 17px;
+                height: 17px;
+            }
         }
 
         /* Sidebar Profile & Typography */
@@ -283,6 +390,10 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             display: flex;
             flex-direction: column;
             gap: 22px;
+        }
+
+        .mobile-career-history {
+            display: none;
         }
 
         .sidebar-block {
@@ -354,16 +465,18 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
         .skill-pill {
             display: inline-flex;
             align-items: center;
-            padding: 5px 12px;
+            padding: 5px 10px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78rem;
+            font-size: 0.74rem;
             font-weight: 500;
             color: var(--text-main);
             background: var(--tag-bg);
             border: 1px solid var(--border-subtle);
-            border-radius: 999px;
-            line-height: 1.35;
-            white-space: nowrap;
+            border-radius: var(--radius-sm);
+            line-height: 1.4;
+            white-space: normal;
+            word-break: normal;
+            overflow-wrap: break-word;
             transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
         }
 
@@ -377,6 +490,11 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
         /* Sidebar Bottom & Socials */
         .sidebar-bottom {
             margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-footer-row {
             display: flex;
             flex-direction: column;
         }
@@ -1433,65 +1551,84 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
 
                 <!-- Experience, Education ("Four Lines" Stacked Layout) & Skill Pills -->
                 <div class="sidebar-exp-edu" id="sidebar-exp-edu">
-                    <!-- Experience -->
-                    <section class="sidebar-block" id="sidebar-experience" aria-label="Professional Experience">
-                        <h2 class="sidebar-section-title" id="heading-experience">Experience</h2>
-                        <div class="stacked-entry-list" id="list-experience">
-                            <div class="stacked-entry" id="exp-cisco">
-                                <div class="entry-row-top">
-                                    <span class="entry-institution">Cisco</span>
-                                    <span class="entry-date">2017 &ndash; Present</span>
-                                </div>
-                                <div class="entry-row-sub">Senior Software Engineer</div>
-                            </div>
-
-                            <div class="stacked-entry" id="exp-tatvic">
-                                <div class="entry-row-top">
-                                    <span class="entry-institution">Tatvic</span>
-                                    <span class="entry-date">2013 &ndash; 2015</span>
-                                </div>
-                                <div class="entry-row-sub">Software Engineer</div>
-                            </div>
+                    <!-- Mobile Career Timeline Badges / Chips (Saves ~75% Height) -->
+                    <section class="sidebar-block mobile-career-history" id="sidebar-career-mobile" aria-label="Career & Education History">
+                        <h2 class="sidebar-section-title" id="heading-career-mobile">Career &amp; Education</h2>
+                        <div class="career-timeline-chips" id="career-timeline-chips">
+                            <span class="career-chip" id="career-chip-cisco">
+                                <span class="career-chip-name">Cisco</span>
+                                <span class="career-chip-meta">(Sr. SWE · 2017–Pres)</span>
+                            </span>
+                            <span class="career-timeline-bullet" aria-hidden="true">•</span>
+                            <span class="career-chip" id="career-chip-tatvic">
+                                <span class="career-chip-name">Tatvic</span>
+                                <span class="career-chip-meta">(2013–15)</span>
+                            </span>
+                            <span class="career-timeline-bullet" aria-hidden="true">•</span>
+                            <span class="career-chip" id="career-chip-bits">
+                                <span class="career-chip-name">BITS Pilani</span>
+                                <span class="career-chip-meta">(M.E. '17)</span>
+                            </span>
                         </div>
                     </section>
 
-                    <!-- Education -->
-                    <section class="sidebar-block" id="sidebar-education" aria-label="Education">
-                        <h2 class="sidebar-section-title" id="heading-education">Education</h2>
-                        <div class="stacked-entry-list" id="list-education">
-                            <div class="stacked-entry" id="edu-bits">
-                                <div class="entry-row-top">
-                                    <span class="entry-institution">BITS Pilani</span>
-                                    <span class="entry-date">2015 &ndash; 2017</span>
+                    <!-- Desktop Stacked Experience & Education -->
+                    <div class="desktop-exp-edu" id="desktop-exp-edu">
+                        <!-- Experience -->
+                        <section class="sidebar-block" id="sidebar-experience" aria-label="Professional Experience">
+                            <h2 class="sidebar-section-title" id="heading-experience">Experience</h2>
+                            <div class="stacked-entry-list" id="list-experience">
+                                <div class="stacked-entry" id="exp-cisco">
+                                    <div class="entry-row-top">
+                                        <span class="entry-institution">Cisco</span>
+                                        <span class="entry-date">2017 &ndash; Present</span>
+                                    </div>
+                                    <div class="entry-row-sub">Senior Software Engineer</div>
                                 </div>
-                                <div class="entry-row-sub">M.E. Software Systems</div>
-                            </div>
 
-                            <div class="stacked-entry" id="edu-ddit">
-                                <div class="entry-row-top">
-                                    <span class="entry-institution">DDIT</span>
-                                    <span class="entry-date">2009 &ndash; 2013</span>
+                                <div class="stacked-entry" id="exp-tatvic">
+                                    <div class="entry-row-top">
+                                        <span class="entry-institution">Tatvic</span>
+                                        <span class="entry-date">2013 &ndash; 2015</span>
+                                    </div>
+                                    <div class="entry-row-sub">Software Engineer</div>
                                 </div>
-                                <div class="entry-row-sub">B.Tech Information Technology</div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+
+                        <!-- Education -->
+                        <section class="sidebar-block" id="sidebar-education" aria-label="Education" style="margin-top: 22px;">
+                            <h2 class="sidebar-section-title" id="heading-education">Education</h2>
+                            <div class="stacked-entry-list" id="list-education">
+                                <div class="stacked-entry" id="edu-bits">
+                                    <div class="entry-row-top">
+                                        <span class="entry-institution">BITS Pilani</span>
+                                        <span class="entry-date">2015 &ndash; 2017</span>
+                                    </div>
+                                    <div class="entry-row-sub">M.E. Software Systems</div>
+                                </div>
+
+                                <div class="stacked-entry" id="edu-ddit">
+                                    <div class="entry-row-top">
+                                        <span class="entry-institution">DDIT</span>
+                                        <span class="entry-date">2009 &ndash; 2013</span>
+                                    </div>
+                                    <div class="entry-row-sub">B.Tech Information Technology</div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
 
                     <!-- Skill Pills -->
                     <section class="sidebar-block" id="sidebar-skills" aria-label="Skills">
                         <h2 class="sidebar-section-title" id="heading-skills">Skills</h2>
                         <div class="skills-pill-container" id="skills-pill-container">
                             <span class="skill-pill" id="skill-python">Python</span>
+                            <span class="skill-pill" id="skill-aws">AWS (Redshift, OpenSearch, Lambda, RDS, SQS, SNS, Cognito)</span>
+                            <span class="skill-pill" id="skill-email-security">Email Security (SPF, DKIM, DMARC, BEC, Phishing)</span>
+                            <span class="skill-pill" id="skill-terraform">Terraform</span>
                             <span class="skill-pill" id="skill-go">Go</span>
                             <span class="skill-pill" id="skill-typescript">TypeScript</span>
-                            <span class="skill-pill" id="skill-aws">AWS</span>
-                            <span class="skill-pill" id="skill-terraform">Terraform</span>
-                            <span class="skill-pill" id="skill-angular">Angular</span>
-                            <span class="skill-pill" id="skill-opensearch">OpenSearch</span>
-                            <span class="skill-pill" id="skill-redshift">Redshift</span>
-                            <span class="skill-pill" id="skill-dbt">dbt</span>
-                            <span class="skill-pill" id="skill-vectordbs">Vector Databases</span>
-                            <span class="skill-pill" id="skill-django">Django</span>
                         </div>
                     </section>
                 </div>
@@ -1500,29 +1637,32 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             <div class="sidebar-bottom">
                 <hr class="sidebar-divider" aria-hidden="true">
 
-                <!-- Social & Contact Links -->
-                <div class="sidebar-socials" id="sidebar-socials">
-                    <a href="mailto:sudhirxps@gmail.com" class="social-link" id="nav-email" title="Send Email">
-                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                        <span>Email</span>
-                    </a>
-                    <a href="https://github.com/sudhirmishra" target="_blank" rel="noopener noreferrer" class="social-link" id="nav-github" title="GitHub Profile">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://linkedin.com/in/mishrasudhir" target="_blank" rel="noopener noreferrer" class="social-link" id="nav-linkedin" title="LinkedIn Profile">
-                        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 1 0 1.64 1.64 1.64 1.64 0 0 0-1.64-1.64z"/></svg>
-                        <span>LinkedIn</span>
-                    </a>
-                </div>
+                <!-- Social & Contact Links and Theme Toggle Container -->
+                <div class="sidebar-footer-row" id="sidebar-footer-row">
+                    <!-- Social Links -->
+                    <div class="sidebar-socials" id="sidebar-socials">
+                        <a href="mailto:sudhirxps@gmail.com" class="social-link" id="nav-email" title="Send Email" aria-label="Send Email">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            <span class="btn-text">Email</span>
+                        </a>
+                        <a href="https://github.com/sudhirmishra" target="_blank" rel="noopener noreferrer" class="social-link" id="nav-github" title="GitHub Profile" aria-label="GitHub Profile">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                            <span class="btn-text">GitHub</span>
+                        </a>
+                        <a href="https://linkedin.com/in/mishrasudhir" target="_blank" rel="noopener noreferrer" class="social-link" id="nav-linkedin" title="LinkedIn Profile" aria-label="LinkedIn Profile">
+                            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 1 0 1.64 1.64 1.64 1.64 0 0 0-1.64-1.64z"/></svg>
+                            <span class="btn-text">LinkedIn</span>
+                        </a>
+                    </div>
 
-                <!-- Theme Toggle -->
-                <div class="sidebar-actions" id="sidebar-actions">
-                    <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle light and dark mode">
-                        <svg id="theme-icon-moon" viewBox="0 0 24 24" style="display: none;"><path d="M12.3 2a10 10 0 0 0-.19 20 10 10 0 0 0 8.35-4.52 1 1 0 0 0-.82-1.52A8 8 0 0 1 12.3 4a7.92 7.92 0 0 1 1.48.14 1 1 0 0 0 1.13-1.25A10.1 10.1 0 0 0 12.3 2z"/></svg>
-                        <svg id="theme-icon-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1zm0 18a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1zm10-9h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM4 12a1 1 0 0 0-1-1H1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm14.07-6.07a1 1 0 0 0-1.41 0l-1.42 1.41a1 1 0 1 0 1.41 1.42l1.42-1.42a1 1 0 0 0 0-1.41zM6.76 17.24a1 1 0 0 0-1.42 0l-1.41 1.42a1 1 0 1 0 1.41 1.41l1.42-1.41a1 1 0 0 0 0-1.42zm11.31 1.42l-1.42-1.42a1 1 0 0 0-1.41 1.42l1.42 1.41a1 1 0 0 0 1.41-1.41zM7.17 6.76L5.76 5.34a1 1 0 1 0-1.41 1.42l1.41 1.41a1 1 0 0 0 1.41-1.41z"/></svg>
-                        <span id="theme-text">Dark Mode</span>
-                    </button>
+                    <!-- Theme Toggle -->
+                    <div class="sidebar-actions" id="sidebar-actions">
+                        <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle light and dark mode" title="Toggle theme">
+                            <svg id="theme-icon-moon" viewBox="0 0 24 24" style="display: none;"><path d="M12.3 2a10 10 0 0 0-.19 20 10 10 0 0 0 8.35-4.52 1 1 0 0 0-.82-1.52A8 8 0 0 1 12.3 4a7.92 7.92 0 0 1 1.48.14 1 1 0 0 0 1.13-1.25A10.1 10.1 0 0 0 12.3 2z"/></svg>
+                            <svg id="theme-icon-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1zm0 18a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1zm10-9h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM4 12a1 1 0 0 0-1-1H1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm14.07-6.07a1 1 0 0 0-1.41 0l-1.42 1.41a1 1 0 1 0 1.41 1.42l1.42-1.42a1 1 0 0 0 0-1.41zM6.76 17.24a1 1 0 0 0-1.42 0l-1.41 1.42a1 1 0 1 0 1.41 1.41l1.42-1.41a1 1 0 0 0 0-1.42zm11.31 1.42l-1.42-1.42a1 1 0 0 0-1.41 1.42l1.42 1.41a1 1 0 0 0 1.41-1.41zM7.17 6.76L5.76 5.34a1 1 0 1 0-1.41 1.42l1.41 1.41a1 1 0 0 0 1.41-1.41z"/></svg>
+                            <span class="btn-text" id="theme-text">Dark Mode</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             </div>

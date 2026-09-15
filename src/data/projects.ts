@@ -21,17 +21,17 @@ export const projects: Project[] = [
         category: 'security',
         categories: 'security',
         metaPill: 'Security Product Engineering · Cisco Systems',
-        summary: 'Architected and implemented enterprise-grade threat detection services for an email security platform safeguarding thousands of enterprise organizations. Engineered an extensible adapter framework decoupling proprietary threat-scanning engines from downstream messaging queues, enabling seamless onboarding of advanced URL inspection models and malware sandboxing technologies without breaking core message evaluation pipelines. Implemented high-throughput Celery worker fleets backed by Redis and PostgreSQL to asynchronously inspect attachments, parse nested MIME components, and verify DKIM/SPF authentication records with sub-second latency. Designed unified administrative audit APIs exposing granular threat classification telemetry, quarantine workflows, and retroactive clawback actions across millions of processed emails.',
-        challenge: 'The email-security product needed to detect malicious URLs, attachments, and content using several independent threat-scanning engines and external intelligence feeds — while keeping the scanning framework maintainable as new engines and feed formats were added over time, and giving administrators enough visibility to search, tag, and act on processed messages.',
+        summary: 'Architected and implemented enterprise-grade threat detection services for an email security platform (MTA) safeguarding thousands of enterprise organizations. Engineered an extensible adapter framework decoupling proprietary threat-scanning engines from downstream messaging queues, enabling seamless onboarding of advanced URL inspection models, malware sandboxing, and SPF/DKIM/DMARC alignment checks. Leveraged AWS SQS for resilient async queueing between engines, AWS SNS for real-time threat feed updates, and AWS Lambda for serverless threat intelligence lookups without blocking line-speed message processing. Stored high-resolution verdict metadata in AWS RDS with Celery and Redis worker fleets, providing unified administrative audit APIs, quarantine workflows, and DLP policy controls across millions of processed emails.',
+        challenge: 'The email-security product (an enterprise Message Transfer Agent / MTA) needed to detect phishing, domain spoofing, Business Email Compromise (BEC), and zero-day malware attachments using several independent threat-scanning engines and external intelligence feeds — while keeping the scanning framework maintainable as new engines and feed formats were added over time, and giving administrators enough visibility to search, tag, and act on processed messages.',
         approach: [
-            'Designed an adapter-based plugin layer that decoupled scanning engines from the core pipeline, allowing new engines and feed formats to be integrated with minimal changes to pipeline code.',
-            'Implemented an administrative tagging and remediation workflow with audit-logging capabilities, enabling security teams to trace threat decisions, quarantine or release messages, and apply policy overrides.',
-            'Added Celery-based async task orchestration for offloading long-running threat queries and sandbox analysis without blocking line-speed message processing.',
-            'Built administrative APIs and audit queries backed by PostgreSQL to give operations visibility into engine verdicts and message-level threat metadata.'
+            'Designed an adapter-based plugin layer to evaluate SPF, DKIM, and DMARC alignment and route suspicious payloads to sandbox environments.',
+            'Leveraged AWS SQS for resilient, asynchronous message queuing between threat-scanning engines, and AWS SNS for real-time alerting on critical threat feed updates.',
+            'Utilized AWS Lambda for serverless, event-driven threat intelligence lookups without blocking line-speed message processing, storing verdict metadata in highly available AWS RDS instances.',
+            'Built administrative APIs and audit queries backed by AWS RDS to give operations visibility into engine verdicts and message-level threat metadata.'
         ],
-        outcome: 'Allowed the security product to ingest new threat feeds and scanning engines without core pipeline rewrites, reducing new-engine onboarding time and giving enterprise administrators verifiable audit visibility into threat verdicts.',
-        stack: ['Python', 'PostgreSQL', 'Celery', 'Redis', 'Docker', 'REST APIs', 'Linux (RHEL/CentOS)', 'AWS (EC2, S3)'],
-        keywords: 'email threat protection platform security adapter plugin celery redis postgresql docker cisco rhel aws mimedetect'
+        outcome: 'Allowed the security product to ingest new threat feeds and scanning engines without core pipeline rewrites, reducing new-engine onboarding time and giving enterprise administrators verifiable audit visibility into quarantine workflows, Data Loss Prevention (DLP) violations, and threat verdicts.',
+        stack: ['Python', 'AWS Lambda', 'AWS SQS', 'AWS SNS', 'AWS RDS', 'Celery', 'Redis', 'REST APIs'],
+        keywords: 'email threat protection platform security mta spf dkim dmarc bec phishing malware aws lambda sqs sns rds celery redis rest apis dlp quarantine cisco'
     },
     {
         id: 'bqwmp',
@@ -40,17 +40,17 @@ export const projects: Project[] = [
         category: 'data',
         categories: 'data',
         metaPill: 'Cloud Infrastructure / Big Data · Cisco Systems',
-        summary: 'Designed, built, and optimized high-throughput cloud analytics pipelines aggregating multi-terabyte security telemetry, message verdicts, and threat metadata daily. Engineered distributed ETL pipelines using Python, SQL, and Apache Airflow to extract structured log streams from Amazon S3 object stores, perform schema validation, and load compressed columnar data into Amazon Redshift clusters. Formulated optimal distribution and sort key strategies alongside automated table maintenance routines that accelerated complex analytical aggregation queries by more than 40%. Implemented secure REST microservices utilizing FastAPI to expose sanitized threat intelligence feeds, detection metrics, and compliance logs directly to executive dashboards and customer-facing reporting portals.',
+        summary: 'Designed, built, and optimized high-throughput cloud analytics pipelines aggregating multi-terabyte security telemetry, message verdicts, and threat metadata daily. Engineered distributed ETL pipelines in Python using Apache Airflow to orchestrate data extraction from Amazon S3, transformation via AWS Glue, and COPY-based bulk loading into AWS Redshift clusters. Re-indexed and tuned AWS Redshift distribution and sort keys for petabyte-scale telemetry, accelerating complex analytical aggregation queries by more than 40%. Migrated operational data stores to AWS RDS (PostgreSQL) to serve high-throughput transactional queries, and built secure FastAPI microservices delivering real-time metrics directly to executive dashboards and customer reporting portals.',
         challenge: 'As processed email volume grew across commercial and government cloud environments, the analytics layer needed to ingest, transform, and serve reporting queries on tens of millions of threat events per day without database contention or slow dashboard queries.',
         approach: [
-            'Structured ETL workflows using Apache Airflow to orchestrate parallel data extraction from S3, transformation via Python workers, and COPY-based bulk loading into Amazon Redshift.',
-            'Re-indexed and tuned Redshift table distribution and sort keys according to query access patterns, reducing query runtimes on heavy analytical dashboards.',
-            'Developed secure, token-authenticated REST microservices using FastAPI to deliver aggregated metrics and threat trends directly to downstream reporting interfaces.',
-            'Implemented health monitoring, pipeline dead-letter queues, and Slack/email alerting to catch data-loading failures before they impacted downstream reporting.'
+            'Structured ETL workflows in Python using Apache Airflow to orchestrate parallel data extraction from S3, transformation via AWS Glue, and COPY-based bulk loading into AWS Redshift.',
+            'Re-indexed and tuned AWS Redshift table distribution and sort keys for petabyte-scale security telemetry, reducing query runtimes on heavy analytical dashboards.',
+            'Migrated operational databases to AWS RDS (PostgreSQL) to handle high-throughput transactional queries from downstream REST microservices.',
+            'Developed secure, token-authenticated REST microservices using FastAPI to deliver aggregated metrics and threat trends directly to downstream reporting interfaces, backed by automated pipeline health monitoring.'
         ],
         outcome: 'Delivered reliable reporting across multi-million event daily workloads, with automated monitoring and alerting that drastically reduced pipeline downtime and eliminated silent data ingestion failures.',
-        stack: ['Python', 'Amazon Redshift', 'Apache Airflow', 'FastAPI', 'PostgreSQL', 'Amazon S3', 'AWS Glue', 'Docker'],
-        keywords: 'cloud analytics security data systems big data etl airflow redshift fastapi s3 aws postgresql cisco'
+        stack: ['Python', 'AWS Redshift', 'AWS RDS', 'Apache Airflow', 'FastAPI', 'AWS Glue', 'Amazon S3'],
+        keywords: 'cloud analytics security data systems big data etl python aws redshift aws rds apache airflow fastapi aws glue amazon s3 sql petabyte telemetry cisco'
     },
     {
         id: 'fndxy',
@@ -59,17 +59,17 @@ export const projects: Project[] = [
         category: 'security',
         categories: 'security data',
         metaPill: 'GovCloud Infrastructure & Search · Cisco Systems',
-        summary: 'Directed the architectural migration of legacy search clusters to AWS OpenSearch Service within strict FedRAMP Moderate and AWS GovCloud federal regulatory environments. Architected dual-write event ingestion pipelines utilizing Python and message queues to index hundreds of millions of threat logs concurrently across legacy Elasticsearch and new OpenSearch clusters with zero production downtime. Implemented rigorous security controls including FIPS 140-2 validated encryption in transit and at rest, automated daily snapshot lifecycles, and fine-grained role-based access control (FGAC) policies. Engineered custom index state management policies that automatically transitioned aging log indexes through hot, warm, and cold storage tiers, cutting infrastructure storage expenditures by 35% while preserving instant search availability.',
-        challenge: 'Migrating production search infrastructure from legacy Elasticsearch to managed AWS OpenSearch Service within an AWS GovCloud environment required zero data loss, strict adherence to federal regulatory security baselines (FedRAMP Moderate), and minimal downtime during cutover.',
+        summary: 'Directed the architectural migration of legacy search clusters to managed AWS OpenSearch within strict FedRAMP Moderate and AWS GovCloud federal regulatory environments. Architected a highly resilient dual-write pipeline using AWS SQS message queues and Python to index hundreds of millions of threat logs concurrently across legacy Elasticsearch and target AWS OpenSearch clusters with zero production downtime. Enforced rigorous FedRAMP compliance controls including FIPS 140-2 encryption, automated snapshot lifecycles, and fine-grained IAM access control via Terraform. Engineered OpenSearch Index State Management (ISM) policies to transition aging log indexes through hot, warm, and cold storage tiers, cutting infrastructure storage expenditures by 35% while preserving instant search availability.',
+        challenge: 'Migrating production search infrastructure to managed AWS OpenSearch within an AWS GovCloud environment required zero data loss, strict adherence to federal regulatory security baselines (FedRAMP Moderate), and minimal downtime during cutover.',
         approach: [
-            'Architected a dual-write pipeline using message queues, allowing both legacy Elasticsearch and target AWS OpenSearch clusters to receive indexing events simultaneously during validation.',
+            'Architected a highly resilient dual-write pipeline using AWS SQS message queues, allowing both legacy Elasticsearch and target AWS OpenSearch clusters to receive indexing events simultaneously.',
             'Enforced FedRAMP Moderate baseline requirements, including FIPS 140-2 encryption at rest and in transit, VPC endpoint isolation, and least-privilege IAM policies with AWS KMS customer-managed keys.',
             'Configured OpenSearch Index State Management (ISM) to automate rollover, shrink, and transition of indexes from hot NVMe nodes to warm and cold storage tiers.',
             'Developed automated data-validation and count-reconciliation scripts in Python to confirm document parity between clusters prior to final DNS switchover.'
         ],
         outcome: 'Successfully cut over search workloads in AWS GovCloud with zero document loss and no production downtime, while achieving full compliance verification under FedRAMP audit criteria.',
-        stack: ['AWS OpenSearch Service', 'Elasticsearch', 'Python', 'AWS GovCloud', 'AWS KMS', 'IAM', 'Terraform', 'Docker'],
-        keywords: 'opensearch migration fedramp govcloud compliance elasticsearch aws kms fips ism hot cold zero downtime cisco'
+        stack: ['AWS OpenSearch', 'AWS SQS', 'Python', 'AWS GovCloud', 'Terraform', 'IAM'],
+        keywords: 'opensearch migration fedramp govcloud compliance aws opensearch aws sqs python terraform iam elasticsearch kms fips ism zero downtime cisco'
     },
     {
         id: 'yjmqs',
@@ -135,17 +135,17 @@ export const projects: Project[] = [
         category: 'security',
         categories: 'security',
         metaPill: 'Security & Access Governance · Cisco Systems',
-        summary: 'Designed and enforced a unified identity, authentication, and access governance architecture across multi-tenant security data services and database infrastructure at Cisco Systems. Modernized disparate authentication mechanisms spanning Amazon Redshift clusters, PostgreSQL RDS instances, and distributed OpenSearch deployments by consolidating access controls under centralized AWS IAM federation and Okta/OIDC single sign-on. Eliminated vulnerable static database passwords across production systems by implementing automated credential rotation with AWS Secrets Manager and enforcing IAM-based temporary database authentication. Configured least-privilege role-based access control (RBAC) definitions and granular resource policies strictly mapped to enterprise directory groups, maintaining immutable audit trails via AWS CloudTrail. Built automated policy verification and compliance scanning routines using Python and Terraform infrastructure-as-code to prevent permission sprawl, achieving complete audit readiness aligned with stringent FedRAMP Moderate and AWS GovCloud federal regulatory security mandates.',
+        summary: 'Designed and enforced a unified identity, authentication, and access governance architecture across multi-tenant security data services and database infrastructure at Cisco Systems. Modernized disparate authentication mechanisms by implementing centralized authentication workflows integrating AWS Cognito and Okta/OIDC for secure user identity management and seamless SSO across internal dashboards. Governed database access by enforcing IAM-based auth across AWS Redshift and AWS RDS, coupled with automated credential hardening and rotation via AWS Secrets Manager. Configured least-privilege role-based access control (RBAC) definitions in Terraform mapped to enterprise directory groups, maintaining immutable audit trails with AWS CloudTrail and Python compliance scanners to achieve full audit readiness aligned with FedRAMP Moderate and AWS GovCloud mandates.',
         challenge: 'Decentralized database credentials, inconsistent local account provisioning, and sprawling IAM permissions across multi-region AWS environments posed security audit vulnerabilities and operational complexity for security data platforms.',
         approach: [
-            'Architected centralized enterprise identity federation integrating Okta single sign-on with AWS IAM roles via SAML 2.0 / OIDC.',
-            'Enforced IAM temporary token authentication and automated credential rotation for PostgreSQL RDS and Redshift clusters using AWS Secrets Manager.',
+            'Implemented centralized authentication workflows integrating AWS Cognito and Okta/OIDC for secure user identity management and seamless SSO across internal dashboards.',
+            'Governed database access by enforcing IAM-based auth across AWS Redshift and AWS RDS, coupled with credential hardening via AWS Secrets Manager.',
             'Implemented least-privilege Role-Based Access Control (RBAC) schemas in Terraform, eliminating hardcoded credentials in deployment manifests.',
             'Established continuous compliance audits utilizing AWS CloudTrail and Python verification scripts to flag unauthorized privilege escalation.'
         ],
         outcome: 'Eliminated static administrative database passwords across all production data stores, achieving 100% compliance adherence with federal security baselines and streamlining onboarding.',
-        stack: ['AWS IAM', 'Okta / OIDC', 'AWS Secrets Manager', 'CloudTrail', 'Redshift IAM Auth', 'PostgreSQL RDS', 'Terraform', 'Python'],
-        keywords: 'centralized auth authorization access governance aws iam okta oidc secrets manager cloudtrail redshift rds postgresql terraform python'
+        stack: ['AWS Cognito', 'AWS IAM', 'AWS RDS', 'AWS Redshift', 'Okta / OIDC', 'Terraform', 'Python'],
+        keywords: 'centralized authentication access governance aws cognito aws iam aws rds aws redshift okta oidc terraform python secrets manager cloudtrail rbac fedramp cisco'
     },
     {
         id: 'phvdo',
