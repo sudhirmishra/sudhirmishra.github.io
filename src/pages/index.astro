@@ -227,64 +227,6 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                 width: 100%;
             }
 
-            /* Mobile Career Timeline Badges: Saves ~75% height by replacing stacked lists */
-            .desktop-exp-edu {
-                display: none !important;
-            }
-
-            .mobile-career-history {
-                display: flex !important;
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .career-timeline-chips {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                gap: 6px 8px;
-            }
-
-            .career-chip {
-                display: inline-flex;
-                align-items: baseline;
-                gap: 6px;
-                background: var(--tag-bg);
-                border: 1px solid var(--border-subtle);
-                border-radius: var(--radius-sm);
-                padding: 5px 10px;
-                font-family: 'Outfit', sans-serif;
-                font-size: 0.8rem;
-                color: var(--text-main);
-                line-height: 1.35;
-                white-space: nowrap;
-                transition: border-color 0.15s ease, background-color 0.15s ease;
-            }
-
-            .career-chip:hover {
-                border-color: var(--border-medium);
-                background: var(--surface-hover);
-            }
-
-            .career-chip-name {
-                font-weight: 700;
-                color: var(--text-main);
-                letter-spacing: -0.01em;
-            }
-
-            .career-chip-meta {
-                font-family: 'JetBrains Mono', monospace;
-                font-size: 0.72rem;
-                font-weight: 500;
-                color: var(--text-muted);
-            }
-
-            .career-timeline-bullet {
-                color: var(--text-muted);
-                font-size: 0.75rem;
-                user-select: none;
-                opacity: 0.7;
-            }
 
             /* Mobile Footer Buttons (Email, GitHub, LinkedIn, Theme): Icon-only logos in a single horizontal row */
             .sidebar-bottom {
@@ -377,6 +319,71 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             line-height: 1.5;
         }
 
+        /* Sidebar Primary Navigation: Projects / Blog */
+        .sidebar-main-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .main-nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 14px;
+            border-radius: var(--radius-sm);
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: all 0.15s ease;
+            text-decoration: none;
+        }
+
+        .main-nav-link:hover {
+            color: var(--text-main);
+            border-color: var(--border-strong);
+            background: var(--surface-hover);
+        }
+
+        .main-nav-link.active {
+            background: var(--accent-bg);
+            border-color: var(--accent-border);
+            color: var(--accent);
+        }
+
+        .main-nav-link svg {
+            width: 15px;
+            height: 15px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        .nav-blog-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--tag-bg);
+            color: var(--text-muted);
+            border: 1px solid var(--border-subtle);
+            border-radius: 9999px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 1px 7px;
+            line-height: 1.2;
+        }
+
+        .main-nav-link:hover .nav-blog-badge,
+        .main-nav-link.active .nav-blog-badge {
+            background: var(--surface);
+            color: var(--accent);
+            border-color: var(--accent-border);
+        }
+
         /* Sidebar Dividers */
         .sidebar-divider {
             height: 1px;
@@ -390,10 +397,6 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             display: flex;
             flex-direction: column;
             gap: 22px;
-        }
-
-        .mobile-career-history {
-            display: none;
         }
 
         .sidebar-block {
@@ -411,48 +414,47 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
             margin-bottom: 12px;
         }
 
-        .stacked-entry-list {
+        /* Career & Education Pills: Compact badges for both Desktop and Mobile */
+        .career-pill-container {
             display: flex;
-            flex-direction: column;
-            gap: 13px;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
         }
 
-        .stacked-entry {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .entry-row-top {
-            display: flex;
+        .career-pill {
+            display: inline-flex;
             align-items: baseline;
-            justify-content: space-between;
-            gap: 10px;
+            gap: 6px;
+            background: var(--tag-bg);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 6px 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.88rem;
+            color: var(--text-main);
+            line-height: 1.35;
+            white-space: nowrap;
+            transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
         }
 
-        .entry-institution {
-            font-size: 0.95rem;
+        .career-pill:hover {
+            border-color: var(--accent);
+            background: var(--surface-hover);
+            transform: translateY(-1px);
+        }
+
+        .career-pill-name {
             font-weight: 700;
             color: var(--text-main);
-            letter-spacing: -0.015em;
-            line-height: 1.25;
+            letter-spacing: -0.01em;
         }
 
-        .entry-date {
+        .career-pill-meta {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 500;
             color: var(--text-muted);
-            white-space: nowrap;
-            letter-spacing: -0.01em;
-            flex-shrink: 0;
-        }
-
-        .entry-row-sub {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            line-height: 1.35;
         }
 
         /* Skill Pills: High density flex wrapping with subtle background & rounded pill corners */
@@ -465,9 +467,9 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
         .skill-pill {
             display: inline-flex;
             align-items: center;
-            padding: 5px 10px;
+            padding: 6px 12px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.74rem;
+            font-size: 0.82rem;
             font-weight: 500;
             color: var(--text-main);
             background: var(--tag-bg);
@@ -1545,79 +1547,47 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                     <p class="profile-bio" id="profile-bio">
                         Building secure cloud platforms, high-throughput data pipelines, and performant web apps. Core focus on threat defense, search infrastructure, and analytics.
                     </p>
+
+                    <!-- Main Navigation: Projects & Blog -->
+                    <nav class="sidebar-main-nav" id="sidebar-main-nav" aria-label="Main Navigation">
+                        <a href="/" class="main-nav-link active" id="nav-link-projects" title="View Portfolio Projects">
+                            <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
+                            <span>Projects</span>
+                        </a>
+                        <a href="/blog" class="main-nav-link" id="nav-link-blog" title="View Technical Blog & Essays">
+                            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                            <span>Blog</span>
+                            <span class="nav-blog-badge">3</span>
+                        </a>
+                    </nav>
                 </header>
 
                 <hr class="sidebar-divider" aria-hidden="true">
 
-                <!-- Experience, Education ("Four Lines" Stacked Layout) & Skill Pills -->
+                <!-- Career, Education & Skills -->
                 <div class="sidebar-exp-edu" id="sidebar-exp-edu">
-                    <!-- Mobile Career Timeline Badges / Chips (Saves ~75% Height) -->
-                    <section class="sidebar-block mobile-career-history" id="sidebar-career-mobile" aria-label="Career & Education History">
-                        <h2 class="sidebar-section-title" id="heading-career-mobile">Career &amp; Education</h2>
-                        <div class="career-timeline-chips" id="career-timeline-chips">
-                            <span class="career-chip" id="career-chip-cisco">
-                                <span class="career-chip-name">Cisco</span>
-                                <span class="career-chip-meta">(Sr. SWE · 2017–Pres)</span>
+                    <!-- Career & Education Pills (Desktop & Mobile) -->
+                    <section class="sidebar-block" id="sidebar-career-edu" aria-label="Career & Education History">
+                        <h2 class="sidebar-section-title" id="heading-career-edu">Career &amp; Education</h2>
+                        <div class="career-pill-container" id="career-pill-container">
+                            <span class="career-pill" id="career-pill-cisco">
+                                <span class="career-pill-name">Cisco</span>
+                                <span class="career-pill-meta">(Sr. SWE · 2017–Pres)</span>
                             </span>
-                            <span class="career-timeline-bullet" aria-hidden="true">•</span>
-                            <span class="career-chip" id="career-chip-tatvic">
-                                <span class="career-chip-name">Tatvic</span>
-                                <span class="career-chip-meta">(2013–15)</span>
+                            <span class="career-pill" id="career-pill-tatvic">
+                                <span class="career-pill-name">Tatvic</span>
+                                <span class="career-pill-meta">(2013–15)</span>
                             </span>
-                            <span class="career-timeline-bullet" aria-hidden="true">•</span>
-                            <span class="career-chip" id="career-chip-bits">
-                                <span class="career-chip-name">BITS Pilani</span>
-                                <span class="career-chip-meta">(M.E. '17)</span>
+                            <span class="career-pill" id="career-pill-bits">
+                                <span class="career-pill-name">BITS Pilani</span>
+                                <span class="career-pill-meta">(M.E. '17)</span>
+                            </span>
+                            <span class="career-pill" id="career-pill-ddit">
+                                <span class="career-pill-name">DDIT</span>
+                                <span class="career-pill-meta">(B.Tech '13)</span>
                             </span>
                         </div>
                     </section>
-
-                    <!-- Desktop Stacked Experience & Education -->
-                    <div class="desktop-exp-edu" id="desktop-exp-edu">
-                        <!-- Experience -->
-                        <section class="sidebar-block" id="sidebar-experience" aria-label="Professional Experience">
-                            <h2 class="sidebar-section-title" id="heading-experience">Experience</h2>
-                            <div class="stacked-entry-list" id="list-experience">
-                                <div class="stacked-entry" id="exp-cisco">
-                                    <div class="entry-row-top">
-                                        <span class="entry-institution">Cisco</span>
-                                        <span class="entry-date">2017 &ndash; Present</span>
-                                    </div>
-                                    <div class="entry-row-sub">Senior Software Engineer</div>
-                                </div>
-
-                                <div class="stacked-entry" id="exp-tatvic">
-                                    <div class="entry-row-top">
-                                        <span class="entry-institution">Tatvic</span>
-                                        <span class="entry-date">2013 &ndash; 2015</span>
-                                    </div>
-                                    <div class="entry-row-sub">Software Engineer</div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- Education -->
-                        <section class="sidebar-block" id="sidebar-education" aria-label="Education" style="margin-top: 22px;">
-                            <h2 class="sidebar-section-title" id="heading-education">Education</h2>
-                            <div class="stacked-entry-list" id="list-education">
-                                <div class="stacked-entry" id="edu-bits">
-                                    <div class="entry-row-top">
-                                        <span class="entry-institution">BITS Pilani</span>
-                                        <span class="entry-date">2015 &ndash; 2017</span>
-                                    </div>
-                                    <div class="entry-row-sub">M.E. Software Systems</div>
-                                </div>
-
-                                <div class="stacked-entry" id="edu-ddit">
-                                    <div class="entry-row-top">
-                                        <span class="entry-institution">DDIT</span>
-                                        <span class="entry-date">2009 &ndash; 2013</span>
-                                    </div>
-                                    <div class="entry-row-sub">B.Tech Information Technology</div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
 
                     <!-- Skill Pills -->
                     <section class="sidebar-block" id="sidebar-skills" aria-label="Skills">
@@ -1677,6 +1647,9 @@ const webCount = projects.filter(p => p.categories.includes('web')).length;
                 </div>
 
                 <div class="rail-middle">
+                    <a href="/blog" class="rail-icon-link" title="Technical Blog & Articles" aria-label="Technical Blog">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    </a>
                     <a href="mailto:sudhirxps@gmail.com" class="rail-icon-link" title="Send Email" aria-label="Email Sudhir Mishra">
                         <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     </a>
